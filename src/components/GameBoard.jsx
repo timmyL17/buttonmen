@@ -19,7 +19,7 @@ export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRo
   const activeCurrent = currentPlayerDice.filter(d => !d.captured);
   const activeOpponent = opponentDice.filter(d => !d.captured);
 
-  const handleCurrentPlayerDieClick = (die) => {
+  const handleAttackerClick = (die) => {
     if (die.captured) return;
 
     setSelectedAttackers(prev => {
@@ -31,7 +31,7 @@ export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRo
     });
   };
 
-  const handleOpponentDieClick = (die) => {
+  const handleTargetClick = (die) => {
     if (die.captured) return;
 
     setSelectedTarget(prev => prev === die.id ? null : die.id);
@@ -53,14 +53,18 @@ export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRo
   const selectableOpponentDice = activeOpponent.map(d => d.id);
 
   // Mark selected dice
-  const currentWithSelection = currentPlayerDice.map(d => ({
+  const player1WithSelection = gameState.player1.dice.map(d => ({
     ...d,
-    selected: selectedAttackers.includes(d.id)
+    selected: currentPlayerKey === 'player1'
+      ? selectedAttackers.includes(d.id)
+      : selectedTarget === d.id
   }));
 
-  const opponentWithSelection = opponentDice.map(d => ({
+  const player2WithSelection = gameState.player2.dice.map(d => ({
     ...d,
-    selected: selectedTarget === d.id
+    selected: currentPlayerKey === 'player2'
+      ? selectedAttackers.includes(d.id)
+      : selectedTarget === d.id
   }));
 
   const showRoundEnd = gameState.phase === 'round_end' || gameState.phase === 'match_end';
@@ -76,20 +80,20 @@ export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRo
         <PlayerArea
           player={{
             ...gameState.player2,
-            dice: opponentWithSelection
+            dice: player2WithSelection
           }}
           playerKey="player2"
           isCurrentPlayer={currentPlayerKey === 'player2'}
-          onDieClick={handleOpponentDieClick}
-          selectableDice={currentPlayerKey === 'player1' ? selectableOpponentDice : []}
+          onDieClick={currentPlayerKey === 'player2' ? handleAttackerClick : handleTargetClick}
+          selectableDice={currentPlayerKey === 'player2' ? selectableCurrentDice : selectableOpponentDice}
         />
 
         {currentPlayerKey && (
           <AttackPanel
             selectedAttackers={selectedAttackers}
             selectedTarget={selectedTarget}
-            currentPlayerDice={currentWithSelection}
-            opponentDice={opponentWithSelection}
+            currentPlayerDice={currentPlayerDice}
+            opponentDice={opponentDice}
             onExecuteAttack={handleExecuteAttack}
             onPass={handlePass}
           />
@@ -98,12 +102,12 @@ export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRo
         <PlayerArea
           player={{
             ...gameState.player1,
-            dice: currentWithSelection
+            dice: player1WithSelection
           }}
           playerKey="player1"
           isCurrentPlayer={currentPlayerKey === 'player1'}
-          onDieClick={handleCurrentPlayerDieClick}
-          selectableDice={currentPlayerKey === 'player1' ? selectableCurrentDice : []}
+          onDieClick={currentPlayerKey === 'player1' ? handleAttackerClick : handleTargetClick}
+          selectableDice={currentPlayerKey === 'player1' ? selectableCurrentDice : selectableOpponentDice}
         />
 
         {showRoundEnd && gameState.roundScores && (
