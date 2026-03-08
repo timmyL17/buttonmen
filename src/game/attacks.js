@@ -36,23 +36,40 @@ export function executePowerAttack(gameState, attackerDieId, targetDieId) {
     throw new Error('Die not found');
   }
 
-  console.log('Execute power attack:', {
-    attacker,
-    target,
-    canAttack: canPowerAttack(attacker, target)
-  });
-
   if (!canPowerAttack(attacker, target)) {
     throw new Error('Invalid power attack');
   }
 
-  // Capture target die
-  target.captured = true;
+  // Create new state with updated dice (immutable)
+  const newState = {
+    ...gameState,
+    player1: {
+      ...gameState.player1,
+      dice: gameState.player1.dice.map(die => {
+        if (die.id === targetDieId) {
+          return { ...die, captured: true };
+        }
+        if (die.id === attackerDieId) {
+          return { ...die, value: Math.floor(Math.random() * die.size) + 1 };
+        }
+        return die;
+      })
+    },
+    player2: {
+      ...gameState.player2,
+      dice: gameState.player2.dice.map(die => {
+        if (die.id === targetDieId) {
+          return { ...die, captured: true };
+        }
+        if (die.id === attackerDieId) {
+          return { ...die, value: Math.floor(Math.random() * die.size) + 1 };
+        }
+        return die;
+      })
+    }
+  };
 
-  // Re-roll attacker
-  attacker.value = Math.floor(Math.random() * attacker.size) + 1;
-
-  return gameState;
+  return newState;
 }
 
 export function executeSkillAttack(gameState, attackerDieIds, targetDieId) {
@@ -67,15 +84,36 @@ export function executeSkillAttack(gameState, attackerDieIds, targetDieId) {
     throw new Error('Invalid skill attack');
   }
 
-  // Capture target die
-  target.captured = true;
+  // Create new state with updated dice (immutable)
+  const newState = {
+    ...gameState,
+    player1: {
+      ...gameState.player1,
+      dice: gameState.player1.dice.map(die => {
+        if (die.id === targetDieId) {
+          return { ...die, captured: true };
+        }
+        if (attackerDieIds.includes(die.id)) {
+          return { ...die, value: Math.floor(Math.random() * die.size) + 1 };
+        }
+        return die;
+      })
+    },
+    player2: {
+      ...gameState.player2,
+      dice: gameState.player2.dice.map(die => {
+        if (die.id === targetDieId) {
+          return { ...die, captured: true };
+        }
+        if (attackerDieIds.includes(die.id)) {
+          return { ...die, value: Math.floor(Math.random() * die.size) + 1 };
+        }
+        return die;
+      })
+    }
+  };
 
-  // Re-roll all attackers
-  attackers.forEach(attacker => {
-    attacker.value = Math.floor(Math.random() * attacker.size) + 1;
-  });
-
-  return gameState;
+  return newState;
 }
 
 export function findValidPowerAttacks(myDice, opponentDice) {
