@@ -39,6 +39,38 @@ npm run build
 npm run preview
 ```
 
+## Deploy to GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+### Setup Steps:
+
+1. **Create a GitHub repository** named `buttonm`
+
+2. **Enable GitHub Pages**:
+   - Go to your repository settings
+   - Navigate to Pages section (Settings → Pages)
+   - Under "Source", select "GitHub Actions"
+
+3. **Push your code**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/YOUR-USERNAME/buttonm.git
+   git push -u origin main
+   ```
+
+4. **Automatic deployment**: The GitHub Action will automatically build and deploy your site to:
+   ```
+   https://YOUR-USERNAME.github.io/buttonm/
+   ```
+
+### Local Configuration
+
+The app is configured with `base: '/buttonm/'` in `vite.config.js` for GitHub Pages deployment. If you want to deploy to a different path or use a custom domain, update this value.
+
 ## How to Play
 
 1. **Character Selection**: Both players choose a character from the Soldiers set
