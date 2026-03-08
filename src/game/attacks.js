@@ -36,6 +36,12 @@ export function executePowerAttack(gameState, attackerDieId, targetDieId) {
     throw new Error('Die not found');
   }
 
+  console.log('Execute power attack:', {
+    attacker,
+    target,
+    canAttack: canPowerAttack(attacker, target)
+  });
+
   if (!canPowerAttack(attacker, target)) {
     throw new Error('Invalid power attack');
   }

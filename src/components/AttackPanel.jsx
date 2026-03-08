@@ -18,6 +18,18 @@ export default function AttackPanel({
     opponentDice.find(d => d.id === selectedTarget) :
     null;
 
+  // Debug logging
+  if (attackers.length > 0 && target) {
+    console.log('Attack validation:', {
+      attacker: attackers[0],
+      target: target,
+      attackerValue: attackers[0].value,
+      targetValue: target.value,
+      attackerOwner: attackers[0].owner,
+      targetOwner: target.owner
+    });
+  }
+
   const canPower = attackers.length === 1 && target &&
     canPowerAttack(attackers[0], target);
 

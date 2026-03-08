@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PlayerArea from './PlayerArea';
 import AttackPanel from './AttackPanel';
 import ScoreDisplay from './ScoreDisplay';
@@ -9,6 +9,12 @@ import './GameBoard.css';
 export default function GameBoard({ gameState, onExecuteAttack, onPass, onNextRound, onRematch }) {
   const [selectedAttackers, setSelectedAttackers] = useState([]);
   const [selectedTarget, setSelectedTarget] = useState(null);
+
+  // Clear selections when turn changes
+  useEffect(() => {
+    setSelectedAttackers([]);
+    setSelectedTarget(null);
+  }, [gameState.currentPlayer]);
 
   const currentPlayerKey = gameState.currentPlayer;
   const opponentKey = currentPlayerKey === 'player1' ? 'player2' : 'player1';
