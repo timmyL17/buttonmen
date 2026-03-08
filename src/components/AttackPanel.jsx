@@ -18,22 +18,11 @@ export default function AttackPanel({
     opponentDice.find(d => d.id === selectedTarget) :
     null;
 
-  console.log('AttackPanel validation:', {
-    selectedAttackers,
-    selectedTarget,
-    attackers,
-    target,
-    currentPlayerDice: currentPlayerDice.map(d => ({ id: d.id, value: d.value, owner: d.owner })),
-    opponentDice: opponentDice.map(d => ({ id: d.id, value: d.value, owner: d.owner }))
-  });
-
   const canPower = attackers.length === 1 && target &&
     canPowerAttack(attackers[0], target);
 
   const canSkill = attackers.length > 0 && target &&
     canSkillAttack(attackers, target);
-
-  console.log('Validation results:', { canPower, canSkill });
 
   const hasValidAttack = canPower || canSkill;
 
