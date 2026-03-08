@@ -9,9 +9,6 @@ export default function PlayerArea({
   onDieClick,
   selectableDice = []
 }) {
-  const activeDice = player.dice.filter(d => !d.captured);
-  const capturedDice = player.dice.filter(d => d.captured);
-
   return (
     <div className={`player-area ${isCurrentPlayer ? 'player-active' : ''}`}>
       <div className="player-header">
@@ -23,26 +20,15 @@ export default function PlayerArea({
       </div>
 
       <div className="dice-container">
-        {activeDice.map(die => (
+        {player.dice.map(die => (
           <DieDisplay
             key={die.id}
             die={die}
             onClick={onDieClick}
-            selectable={selectableDice.includes(die.id)}
+            selectable={selectableDice.includes(die.id) && !die.captured}
           />
         ))}
       </div>
-
-      {capturedDice.length > 0 && (
-        <div className="captured-section">
-          <div className="captured-label">Captured:</div>
-          <div className="dice-container">
-            {capturedDice.map(die => (
-              <DieDisplay key={die.id} die={die} />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

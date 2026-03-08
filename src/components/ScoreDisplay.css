@@ -1,25 +1,25 @@
 .score-display {
   background-color: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 12px 16px;
   border: 2px solid #e2e8f0;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
 .round-info {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #64748b;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .match-score {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  margin-bottom: 8px;
+  gap: 16px;
+  margin-bottom: 4px;
 }
 
 .score-item {
@@ -29,20 +29,20 @@
 }
 
 .player-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #475569;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .score-value {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #0f172a;
 }
 
 .score-divider {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #cbd5e1;
 }

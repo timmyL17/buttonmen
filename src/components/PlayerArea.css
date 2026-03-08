@@ -1,34 +1,34 @@
 .player-area {
   background-color: #ffffff;
-  border-radius: 12px;
-  padding: 24px;
-  border: 3px solid #e2e8f0;
-  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  margin-bottom: 12px;
   transition: all 0.3s;
 }
 
 .player-active {
   border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
 }
 
 .player-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .player-header h3 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 
 .character-name {
   background-color: #f1f5f9;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #475569;
 }
@@ -36,9 +36,9 @@
 .turn-indicator {
   background-color: #10b981;
   color: white;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.875rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
   font-weight: 700;
   margin-left: auto;
 }
@@ -47,18 +47,4 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-bottom: 12px;
-}
-
-.captured-section {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px dashed #e2e8f0;
-}
-
-.captured-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 8px;
 }

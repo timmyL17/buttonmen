@@ -38,11 +38,11 @@ body {
 
 button {
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.875rem;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
+  border-radius: 6px;
+  padding: 10px 20px;
   transition: all 0.2s;
   font-weight: 500;
 }
@@ -83,7 +83,7 @@ button:disabled {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 12px;
 }
 
 .card {
