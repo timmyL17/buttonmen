@@ -1,0 +1,858 @@
+Search
+Sign In
+Register
+Explore
+Popular pages
+Search
+Sign In
+
+Menu
+
+Explore
+Recent
+Skip to content
+Buttonmen Wiki
+214
+pages
+Explore
+Popular pages
+
+
+in: Ephemera
+Button Men Rules
+Sign in to edit
+
+Contents
+1	The Basics
+2	Dice Types
+2.1	Variable Dice:
+2.1.1	Swing Dice:
+2.1.2	Turbo Swing Dice:
+2.1.3	Mood Swing Dice:
+2.1.4	Mad Swing Dice:
+2.1.5	Option Dice:
+2.1.6	Select Dice:
+2.1.7	Sideboard Dice:
+2.1.8	Batch Dice (Dice Batches):
+2.1.9	Inverted Swing Dice:
+2.2	Armor Dice:
+2.3	Assassin Dice:
+2.4	Aggressive Dice:
+2.5	Auxiliary Dice:
+2.6	Berserk Dice:
+2.7	Boom Dice:
+2.8	Chance Dice:
+2.9	Chaos Dice:
+2.10	Chase's Giant Sized Die:
+2.11	Cross Dice:
+2.12	Deception Dice:
+2.13	Defensive Dice:
+2.14	Dodge Dice:
+2.15	Doppelganger Dice:
+2.16	Dual Dice:
+2.17	Evil Dice:
+2.18	Fire Dice:
+2.19	Focus Dice:
+2.20	Fudged Dice:
+2.21	Sustained Fire Dice
+2.22	Full Auto Dice:
+2.23	Gamer Dice:
+2.24	Hoskin's Die:
+2.25	Insult Dice:
+2.26	Jolt Dice:
+2.27	Konstant Dice:
+2.28	Kubla's Treasure Die:
+2.29	Lucky Dice:
+2.30	Maximum Dice:
+2.31	Mighty Dice:
+2.32	Morph Dice:
+2.33	Null Dice:
+2.34	Ornery Dice:
+2.35	Parry Dice:
+2.36	Plasma Dice:
+2.37	Poison Dice:
+2.38	Queer Dice:
+2.39	Rage Dice:
+2.40	Radioactive Dice:
+2.41	Rebound Dice:
+2.42	Reserve Dice:
+2.43	Rush Dice:
+2.44	Screw Dice:
+2.45	Speed Dice:
+2.46	Shadow Dice:
+2.47	Shamrock Dice:
+2.48	Sleep Dice:
+2.49	Slow Dice:
+2.50	Specialty Dice:
+2.51	Stinger Dice:
+2.52	Stealth Dice:
+2.53	Teleport Dice:
+2.54	Thief Dice:
+2.55	Trip Dice:
+2.56	Time and Space Dice:
+2.57	Twin Dice:
+2.58	Unique Dice:
+2.59	Value Dice:
+2.60	Warrior Dice:
+2.61	Weak Dice:
+2.62	Wildcard Dice:
+2.63	Zombie Dice:
+3	Lost, Unknown, and Proposed Dice Types
+4	Multiplayer variants
+4.1	Single-Character variants
+4.1.1	Free-For-All:
+4.1.2	The Cycle:
+4.1.3	Around the World:
+4.1.4	L5R War/Ping Pong:
+4.1.5	Nonce Method:
+4.2	Multi-Character variants
+4.2.1	Triple-tag team:
+4.3	Extended Play variants for two players
+4.3.1	Dale Y's War:
+5	MacGuffins
+6	Glossary
+The Basics
+Players: 2
+
+Playing Time: 10 minutes and up.
+
+Equipment: One Button Men character for each player, and several polyhedral dice.
+
+Summary of Play: Players fight several rounds, rolling dice and capturing each other’s dice. The first player to win three rounds wins the match.
+
+The Dice:
+
+Each fighter uses several dice of different sizes and types, as specified by the numbers on the artwork. As a rule, smaller dice mean speed, and large dice mean strength.
+
+“X” is a variable die, or “Swing Die.” You may use any die between 4 and 20 sides for an “X.” If a character has more than one “X,” each of those dice must be the same size.
+
+In casual play, you can always change your Swing Dice between rounds. In a tournament, each player chooses his starting dice in secret, and only the loser of each round may change.
+
+The Game:
+
+To Begin: Roll all of your fighter’s dice, and arrange your dice so they can be easily read. Players will now take turns. Whoever rolled the single lowest number will go first. If the lowest dice are tied, compare the next lowest dice, and so on until a starting player is determined. If all numbers are tied, the round is a draw.
+
+On Your Turn: You must make an attack if you can. The basic attacks are Power and Skill. Other attacks are permitted by other dice. See "Dice Types" below.
+
+Power Attack: Use one of your dice to capture one of your opponent’s dice. The value showing on your die must be greater than or equal to the value showing on the die you capture. Take the captured die out of play, and re-roll the capturing die.
+
+Skill Attack: Use one or more of your dice to capture one of your opponent’s dice. In this case, the values showing on your dice must add up exactly to the value showing on the die you capture. Remove the captured die from play, and re-roll all the capturing dice.
+
+Passing: Passing means skipping your turn. You may not pass unless you cannot make any legal attack. When both players pass, the round is over.
+
+Scoring: Calculate your score as follows:
+
+For each die you captured, you score its size in points. For example, a captured 8-sided die is worth 8 points. For each die of your own which you kept, you score half its size. So, keeping your 8-sided die is worth only 4 points. The highest score wins the round, and the first player to win three rounds wins the game.
+
+If any round is a draw, re-play it.
+
+Dice Types
+Here is a list of the most common die types in Button Men. Unless noted otherwise, all Dice may use both Power and Skill Attacks.
+
+A “die” is a randomizer that chooses integers between 1 and its total size with equal frequency. This means that a 1-sided die always rolls 1. A pi-sided die is exactly the same as a 3-sided die.
+
+Some of the more obscure dice rules here are from old websites and from https://github.com/buttonmen-dev/buttonmen/blob/d0e0bab535a1beea57f2be8afb2ab2084daf4ccd/notes/engine/skills.txt
+
+Variable Dice:
+Most Button Men have at least one type of Variable Die, the most common being a Swing Die. In match play, the variable dice of a button can be changed by the loser of the previous round.
+
+Swing Dice:
+Swing Dice have a variable size. A player can choose any size at the beginning of the game. Only the loser of each round can change Swing Dice between rounds. Different letters of Swing Dice can vary between different boundaries, as follows:
+
+1	2	4	6	8
+12		T	W	V	
+16		R			
+20	Y	Q**	X	S	
+30	P*		Z		U
+A-Swing*: The A-Swing may be set from the lowest Swing value your opponents' Swing Dice may take to the highest value they may take. If the opponent has no Swing Dice, A-Swings are d0s.
+
+*Unofficial
+
+**From Unexploded Cow's Mad Swing which can be from 2-20, as Q looks like an upside down bomb.
+
+Buzzing Weasel swing dice:
+
+"Prestige Die" - A variable die which can be any size between 30 and 100 sides, the Prestige Die cannot make any Attacks and is not worth any points
+
+"Gamer Die" - A variable die which can be any size between 3 and 21, except for the common die sizes of 4, 6, 8, 10, 12, and 20.
+
+Note that any value in the given range is a legal size for Swing dice. Thus, it is possible to have 7-, 9-, 13-, or 29-sided dice as long as those numbers are within a Swing die’s limits.
+
+You can simulate any sized die simply by using a larger die and re-rolling all results that are outside the appropriate range.
+
+Turbo Swing Dice:
+A Turbo Swing Die is indicated by a letter followed by a “!”, such as “X!”. Before the round, a Turbo Swing can be any size in the allowable range. During the game, whenever you re-roll a Turbo Swing you may choose a new size for it.
+
+In a tournament, if you are not allowed to change Swing Dice, your Turbo must start the next round with the same value that it started the last round.
+
+(Button Men Online symbol: "!")
+
+Mood Swing Dice:
+A Mood Swing Die is indicated by a letter followed by “?", such as “X?”. Before the round, a Mood Swing can be any size in the allowable range. During the game, whenever you re-roll a Mood Swing it will randomly change size. Mood Swings always choose from among all common die sizes (not all integers) with equal probability. The definition of “common” die sizes is 4, 6, 8, 10, 12, and 20. For a "Y?," add 1, 2, and optionally 16 as selections, for a "Z?" add an optional d16 and d30, and for a "P?" add a 1, 2, 16, 24, and 30.
+
+Button Men Online omits the d16 from the Y? and Z? swing dice based upon precedent set by the original BMO site. Using a d16 in live play is thus optional as long as all players agree. A Moody P-Swing did not exist until after the current Button Men Online site and thus uses the d16 and d24.
+
+(Button Men Online symbol: "?")
+
+Mad Swing Dice:
+A Mad Swing die is represented by an upside-down "?." At the very start of the game (and again after any round they lose, just as with normal Swing dice) the player sets the initial size of Mad Swing dice (from 2-20 for the Unexploded Cow set), but from then on whenever they are rolled their size is set randomly to any even-numbered legal size for that Swing type. The initial size of a Mad Swing die may be set to an odd number.
+
+Mad Swing Dice were introduced in the Unexploded Cow set.
+
+(Button Men Online symbol: "&")
+
+Option Dice:
+Option Dice look like fractions. They are represented as two numbers within a circular Dice Frame, separated by a horizontal line. Option Dice function like Swing Dice, and can be changed at any time that a Swing Die could be changed. However, they can only take one of the two values shown.
+
+For example a 4/12 Option Die could be either a 4 or a 12.
+
+Select Dice:
+Select Dice, known as Take-Five Dice in the Fightball set, allow a fluid play style. At the beginning of each match, you pick five of the Select Dice as your character's dice for the round. When a round is lost, you may change the Select Dice chosen.
+
+(Button Men Online symbol: S)
+
+Sideboard Dice:
+Sideboard Dice are dice set aside at the beginning of a match. A Sideboard Die may be swapped for an Active Die whenever a round is lost. The Sideboard Die becomes an Active Die, and the Active Die becomes a Sideboard die. Sideboard Dice are usually on the left hand side with a slightly darker color to their dice ovals than the Starting Dice.
+
+The Sideboard Die was used in the High School Drama set.
+
+On the Button Men Online site, Sideboard Dice are to be implemented as Reserve Select Dice, with all High School Drama characters having five Select Dice at the beginning of the match.
+
+(Button Men Online symbol: "rS")
+
+Batch Dice (Dice Batches):
+Batch Dice are separate starting dice pools on one button that are picked at the beginning of the match before Swing Dice are chosen. Whenever a Swing Die would be changed, you may change which Dice Batch you are using.
+
+Batch Dice premiered in Monstrous Musicians and Moody Dice Batches premiered in the Bridge and Tunnel set.
+
+(Not currently implemented on Button Men Online. Suggested notation currently is each batch set into brackets and separated by a pipe " | ") [See also Category:Sets_with_Batch_Dice]
+
+Inverted Swing Dice:
+A fan-created swing die type by BMO user Daefaroth. These dice are often paired with a regular version of the same swing die. Their value is the maximum and minimum value of the swing die added together, and then subtracting the chosen value from the total. For example, an inverted X-swing with an X=6 would be ( (20+4) - 6), or a d18. The idea is that both swing dice could have different abilities, and the bigger one was, the smaller the other was.[1]
+
+Armor Dice:
+When not attacking, add the value shown on your Armor Dice to all of your non-Armor Dice. Armor Dice were introduced in the Nodwick set. They are indicated by a shield-shaped Dice Frame.
+
+(Button Men Online symbol: "A") Currently not implemented. [See also Category:Sets_with_Armor_Dice]
+
+Assassin Dice:
+Assassin Dice may not Attack using their shown value. Instead, they double their shown value when used in any form of attack and cause the defending die to be worth half the points it would normally grant.
+
+Assassin Dice were introduced in the fan set Order of Dolls.
+
+(Button Men Online symbol: "a") Currently not implemented. [See also Category:Sets_with_Assassin_Dice]
+
+Aggressive Dice:
+During your turn, add one to the value of each Aggressive Dice in your Active Dice Pool.
+
+When it is not your turn, subtract one from the value of the Aggressive Dice in your Active Dice Pool.[2]
+
+Known as "Attacker Dice" in the Blademasters 2 set.
+
+(Button Men Online Symbol: "-") Currently not implemented. [See also Category:Sets_with_Aggressive_Dice]
+
+Auxiliary Dice:
+Auxiliary Dice appear on the left side of the button, and have a “+” on the frame. These dice represent special abilities or assistants, and are optional.
+
+Before each round, both players decide whether or not to play with one of their Auxiliary Dice. Usually, either both players use one, or both players don’t.
+
+If you fight against a player who has no Auxiliary Dice, and you wish to use your own, chivalry dictates that you offer your opponent the option to use an Auxiliary equivalent to your own. “Equivalent” means a die of the same size and type. In the case of an Auxiliary variable die, such as a Swing Die, each player’s die can vary independently.
+
+Auxiliary Dice appear in the Pendragon Button Lords set of Button Men, published by Green Knight publishing.
+
+(Button Men Online symbol: "+") [See also Category:Sets_with_Auxiliary_Dice]
+
+Berserk Dice:
+Berserk Dice cannot be used in Skill Attacks, but may make Power Attacks normally.
+
+Berserk Attack: Berserk Dice also have a second attack, called a Berserk Attack, which is the equivalent of a Speed Attack. In this attack, one die can capture any number of dice which add up exactly to its value. However, unlike in a Speed Attack, after making a Berserk Attack the Berserk Die is replaced by a normal die half its size (rounding fractions up) before it is rerolled.
+
+Berserk Dice are marked with a capital "B" on the Dice Frames and were first published in the Bruno set.
+
+(Button Men Online symbol: "B") [See also Category:Sets_with_Berserk_Dice]
+
+Boom Dice:
+Boom Attack: remove one of your Boom Dice from play (neither player will score it). Choose one of your opponent's dice, and reroll it. (Note that the targeted die is never captured, just re-rolled.)
+
+Boom Dice were introduced by the Unexploded Cow set. They're indicated by a bomb-shaped Dice Frame.
+
+(Button Men Online symbol: "b") [See also Category:Sets_with_BOOM_Dice]
+
+Chance Dice:
+Chance Dice are random versions of Focus Dice. After the starting roll, if you are not going first, you can re-roll your Chance Dice to attempt to go first. Your opponent can respond by re-rolling one of their Chance Dice, and so on until a player can't possibly go first by re-rolling one of their Chance Dice (or does not wish to re-roll any of their chance dice).
+
+Chance Dice were used in the Yoyodyne button series.
+
+(Button Men Online symbol: "c") [See also Category:Sets_with_Chance_Dice]
+
+Chaos Dice:
+Chaos Dice gain a random skill each time they are rolled. Whenever a Chaotic Die is re-rolled, it loses the previous skill it was granted. They have an @ at the top of their dice oval.
+
+(Button Men Online symbol: "@") Currently not implemented. [See also Category:Sets_with_Chaotic_Dice]
+
+Chaos Dice were created by JeffBoyardee.
+
+Circa 2001 on the original Button Men Online site, Chaotic Dice could gain Berserk, Doppelganger, Jolt, Mighty, Null, Ornery, Poison, Queer, Radioactive, Rage, Speed, Standard(no skill), Stealth, Trip, Time and Space, Value, or Weak skills.
+
+Chase's Giant Sized Die:
+Once per game add 3 to the value of the die at beginning or end of the turn.
+
+Chase's Giant Sized Die is used in the KublaCon convention set.
+
+(Button Men Online symbol "O") Not currently implemented.
+
+Cross Dice:
+Cross Attack: Use your Cross Die and any other die you control to capture an opponent's die. The values showing on your dice must multiply to exactly to the value showing on the die you capture. Remove the captured die from play, and re-roll both the capturing dice.
+
+Cross Dice were introduced in the Blademasters 2 set.
+
+(Button Men Online symbol "x") Currently not implemented. [See also Category:Sets_with_Cross_Dice]
+
+Deception Dice:
+Deception Dice are worth a different amount of points when captured instead of the size of the Deception Die as normal.
+
+Deception Dice originate from the Gaming Guardians set and originally were always worth four points.
+
+(Button Men Online symbol "~") Currently not implemented. [See also Category:Sets_with_Deception_Dice]
+
+Defensive Dice:
+During your turn, subtract one from the value of each Defensive Dice in your Active Dice Pool.
+
+When it is not your turn, add one to the value of the Defensive Dice in your Active Dice Pool.[3]
+
+Defensive Dice were introduced in the Blademasters 2 fan set.
+
+(Button Men Online Symbol: "|") Currently not implemented. [See also Category:Sets_with_Defensive_Dice]
+
+Dodge Dice:
+Whenever a Dodge Die would be captured, re-roll it. If the new value is less than the original value, place the Dodge Die into its original Active Dice pool instead of the capturing player's Score Pad.
+
+Dodge Dice are worth twice their size in points if captured.
+
+Dodge Dice were introduced in the Unlicensed Japanese Beetle fan set.[4]
+
+(Button Men Online Symbol: "_") Currently not implemented. [See also Category:Sets_with_Dodge_Dice]
+
+Doppelganger Dice:
+After a Doppelganger Die Power Attacks, replace it with an exact copy of the die it attacked, then re-roll it.
+
+(Button Men Online symbol: "D") [See also Category:Sets_with_Doppelganger_Dice]
+
+Doppelganger Dice were created by Dana Huyler for the original Button Men Online site and introduced them in the Free Radicals set; they predate Morph Dice.
+
+Dual Dice:
+Dual Dice were originally named Pai-Gow Dice and are used on the character Pai-Gow from the Las Vegas fan set.
+
+Dual-Weapon Attack: Each Dual Die simultaneously Power Attacks different dice they could power attack.[5]
+
+(Button Men Online Symbol: ":") Currently not implemented. The : represents a pai gow tile, the original name of the skill. [See also Category:Sets_with_Dual_Dice]
+
+Evil Dice:
+Evil Dice do not count for going first. Evil Dice may not Power Attack or Skill Attack.
+
+Evil Attack: Each Evil Die in play simultaneously Power Attacks different dice they could power attack.
+
+Evil Dice originally appeared in the Gaming Guardians set.
+
+(Button Men Online Symbol: "E") Currently not implemented. [See also Category:Sets_with_Evil_Dice]
+
+Fire Dice:
+Fire Dice cannot make Power Attacks.
+
+Before making a Skill or Power Attack, you may increase the value showing on any of the attacking dice, and decrease the values showing on one or more of your Fire Dice by the same amount. For example, if you wish to increase the value of an attacking die by 5 points, you can take 5 points away from one or more of your Fire Dice. Turn the Fire Dice to show the adjusted values, and then make the attack as normal. Dice can never be increased or decreased outside their normal range, i.e., a 10-side die can never show a number lower than 1 or higher than 10. Fire Dice cannot assist attacks other than normal Power or Skill Attacks. They are indicated by a flaming appearance to their dice ovals.
+
+Fire Dice were designed for the PolyCon button set.
+
+(Button Men Online symbol: "F") [See also Category:Sets_with_Fire_Dice] To use Fire Dice on Buttonmen Online, pick the dice other than the fire dice needed for the attack, then click the [Beat People UP!] button to go to the Fire Die addition screen.
+
+Fire Dice/Queer Dice FAQ: You cannot use a Fire die to adjust a Queer die so it can swap from a power to skill attack. James Ernest ruled that to use Fire with a Power attack you'd need to add two to the die, as otherwise it would make the attack illegal.[6] Button Men Online does not require this, however, as the attack type is 'locked in' before changing the Fire dice.
+
+Focus Dice:
+These are represented as black dice frames in the Legend of the Five Rings, and marked with an “f” for Focus. Focus Dice help characters go first. After the starting roll, if you are not going first, you can reduce the values on your Focus Dice so that you are going first. Your opponent can respond by reducing their Focus Dice, and so on until both players are ready to begin, or can’t reduce their dice any farther.
+
+If you go first, you can’t make an attack with any of the Focus Dice that you turned down. The second player has no such restriction.
+
+(Button Men Online symbol: "f") [See also Category:Sets_with_Focus_Dice]
+
+Fudged Dice:
+Fudged Dice, whose name was inspired by the use of the official Fudge Dice (inspired by the d6 numbered [ -, -, 0, 0, +, + ] and interpreted as -1, 0, and +1) on the Buzzing Weasel button and the rare from Blademasters, are dice with a unique set of numbers. Often the dice will have nicknames, such as "Sustained Fire" or "Formula D" that describe the source of the uniquely numbered die. A value is typically assigned as the scoring value of a Fudge die. Most dice that use a Fudge variant are fan made.
+
+Known Fudge dice:
+
+"Original" Fudge die: Score Value 3. [ -, -, 0, 0, +, + ]. This is one of the dice used in the "Fudge RPG."
+
+"Sustained Fire" die: Score Value 3. [0, 1, 1, 2, 2, 3] from the Blademasters set rare Bayaki.
+
+"Shamrock" die: Score Value 13. [1,2,3,4,5,6,13,8,9,10,11,12]
+
+"Formula D-4" [1,1, 2,2]
+
+"Formula D-6" [2, 3,3, 4,4,4]
+
+"Formula D-8" [4, 5, 6,6, 7,7, 8,8]
+
+"Formula D-12" [7,7,8,8,9,9,10,10,11,11,12,12]
+
+"Formula D-20" [11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20]
+
+"Formula D-30" [21-30 appearing equally three times]
+
+No official BMO notation exists for the various Fudged dice.
+
+Sustained Fire Dice
+Sustained Fire Dice use a uniquely numbered d6. (0, 1, 1, 2, 2, 3). If a zero is rolled, Power Attacks cannot be used that turn or the player may skip attacking to re-roll the Sustained Die. Value Scored is 3. (No BMO notation; Currently not implemented on Button Men Online)
+
+Full Auto Dice:
+You may double the value shown on a Full Auto Die to use it in a Power or Skill Attack. This value can exceed the value shown on the Full Auto Die. If you do, skip your next turn. (You have to reload!) You may only use the Full Auto on one die per turn (You have to aim!)
+
+Full Auto Dice were introduced by the Megatokyo fan set.
+
+(Button Men Online symbol "P")[7] Currently not implemented. (Time to reload!) [See also Category:Sets_with_Full_Auto_Dice]
+
+Gamer Dice:
+Once per round per die, you may re-roll any of your Gamer Dice. You may use this ability at any time. If this causes an attack to be invalid, the attack fails and no dice are captured.[8]
+
+(Button Men Online Symbol: "R") Currently not implemented. [See also Category:Sets_with_Gamer_Dice]
+
+For reasons lost to time, Rage Dice were assigned the letter G on the original Button Weavers site. This caused these buttons to be implemented with a different ability. This gave rise to the alternate "Rage" characters in the Origins set.
+
+Hoskin's Die:
+Capture two dice that add up to the Hoskins' value, opponent scores the Hoskins Die at half of its size.
+
+Hoskin's Die is used in the KublaCon convention set.
+
+(Button Men Online symbol "Y") not yet implemented
+
+Insult Dice:
+Insult Dice cannot be captured with a Skill Attack.
+
+Insult Dice first appeared in the Gaming Guardians set.
+
+(Button Men Online symbol: "I") [See also Category:Sets_with_Insult_Dice]
+
+Jolt Dice:
+Whenever a Jolt Die is used in an attack, replace it with an identical die without the Jolt ability at the end of the turn and take an additional turn.
+
+If a player captures a Jolt Die, they may take an additional turn.
+
+(Button Men Online symbol: "J") [See also Category:Sets_with_Jolt_Dice]
+
+Jolt Dice were created by Randy Chertkow (aka Famous) for the original Button Men Online site.
+
+Konstant Dice:
+Konstant Dice may not Power Attack. Konstant Dice may not Skill Attack alone.
+
+Konstant Dice retain their initially rolled value; they are never re-rolled.
+
+Konstant Dice may add or subtract their value when used in a multi-die Skill Attack.
+
+Konstant Dice were introduced in the Button Brains set. They were indicated by a yellow Dice Frame with a "k" below the number.
+
+(Button Men Online symbol: "k") [See also Category:Sets_with_Konstant_Dice]
+
+Kubla's Treasure Die:
+Kubla's Treasure Die cannot be attacked if there are other options. Worth full points if kept.
+
+Kubla's Treasure Die is used in the KublaCon convention set.
+
+(Button Men Online symbol "X")
+
+Lucky Dice:
+Whenever you attack with a Lucky Die, you may re-roll it a second time. If you do, you must keep the second value rolled.
+
+Whenever a die attacks a Lucky Die, that die gains the Lucky ability until the end of the turn.
+
+Lucky Dice were introduced in the Murderers set. They are indicated by a purple Dice Frame with an "L" below the number.
+
+(Button Men Online symbol unknown; currently not programmed. "L" assumed) [See also Category:Sets_with_Lucky_Dice]
+
+Maximum Dice:
+Maximum dice only roll their highest possible value. A Maximum d4 can only roll a 4. By their very nature, d1's are Maximum dice even if not marked as such. Maximum Dice appeared in the Gaming Guardians set as "Loaded Dice." In the GWAR set, they are indicated with an absolute value notation ( "|#|" ).
+
+(Button Men Online symbol: "M") [See also Category:Sets_with_Maximum_Dice]
+
+Mighty Dice:
+Mighty Dice grow one available die size larger every time they are re-rolled. Mighty Dice first officially appeared in the Space Girlz set exclusive to the first Button Men Online site and the Button Men Mobile app. It was originally created on the original Button Men Online site by user Santiago.
+
+Mighty Dice are indicated with an "H" at the bottom of the dice oval.
+
+(Button Men Online symbol: "H") [See also Category:Sets_with_Mighty_Dice]
+
+Morph Dice:
+Morph Dice copy the size of any die they capture; if multiple Morph Dice are used in an attack, all Morph Dice used become the new size. Morph Dice are scored according to their current size upon capture or their current size at the end of the round if uncaptured.
+
+(Button Men Online symbol: "m") [See also Category:Sets_with_Morph_Dice]
+
+Null Dice:
+Null Dice are worth no points at the end of the round.
+
+If a Null Die is used to capture a die, remove the captured die from the game instead of putting it into your Score Pile.
+
+Null Dice were introduced by the promotional character Tess, available at GenCon for the Studio Foglio Brawl decks.
+
+(Button Men Online symbol: "n") [See also Category:Sets_with_Null_Dice]
+
+Ornery Dice:
+Ornery Dice re-roll at the end of each turn even if they did not attack. They are indicated with an "o" on the bottom of the dice oval.
+
+(Button Men Online symbol: "o")
+
+Ornery Dice were created for the original Button Men Online site by JeffBoyArDee.
+
+Parry Dice:
+Parry Dice cannot be captured with a Power Attack.. Introduced in the Blademasters set. Originally, this ability was identical to "Insult" dice.
+
+(No current Button Men Online symbol, "y" used on Blademasters set temporarily) Not implemented on Button Men Online. [See also Category:Sets_with_Parry_Dice]
+
+Plasma Dice:
+Plasma Dice are similar to Option Dice, except only the abilities of the dice change instead of the size of the dice. Plasma Dice were introduced in the Button Men Online exclusive set Space Girlz.
+
+(Button Men Online symbol: "{ }" used to denote abilities that can be chosen from) [See also Category:Sets_with_Plasma_Dice]
+
+Poison Dice:
+A Poison Die is indicated by a “p” on the frame. Poison Dice are worth negative points. If you keep one of your own Poison Dice, you subtract its full size from your score. If you capture an opponent’s Poison Die, subtract half its size.
+
+(Button Men Online symbol: "p") [See also Category:Sets_with_Poison_Dice]
+
+Queer Dice:
+Queer Dice are treated as Standard Dice if showing an even number.
+
+Queer Dice are treated as Shadow Dice if showing an odd number.
+
+Queer Dice have a "Q" on the bottom of their dice oval.
+
+(Button Men Online symbol: "q") [See also Category:Sets_with_Queer_Dice]
+
+Rage Dice:
+Rage Dice do not count for going first.
+
+If a Rage Die attacks, It loses the Rage skill.
+
+If a Rage Die is captured, add a copy of it to your Active Dice Pool and roll it. It loses the Rage skill.
+
+(Button Men Online symbol: "G") [See also Category:Sets_with_Rage_Dice]
+
+Radioactive Dice:
+If a radioactive die is either the attacking die or the target die in an attack with a single attacking die and a single target die, replace the attacking die with two dice as equal as available with sides equaling the size of the attacking die. For example, a %d10 would split into two d5s if available. If not, it would split into a d4 and d6; a d5 would split into a d2 and d3.
+
+(Button Men Online symbol: "%") [See also Category:Sets_with_Radioactive_Dice]
+
+Radioactive Dice were invented by Magnus Mårtensson (aka NoopMan) on the original Button Men Online site.
+
+Rebound Dice:
+Whenever a Rebound Die is captured, before your opponent scores it, re-roll it. If the attack is no longer a legal attack, the player with the Rebound Die places the largest attacking die into their Score Pile. The Rebound Die is still captured.
+
+(Button Men Online symbol: "=" Not yet implemented) [See also Category:Sets_with_Rebound_Dice]
+
+Reserve Dice:
+Whenever you lose a round to your opponent, you may move any one of your character’s Reserve Dice into your Starting Dice for the next round (the same rule applies to your opponent after they lose a round). When the next round begins, you will now have one extra die to use during play. This reassignment of Reserve Dice to Starting Dice applies to any round and once a Reserve Die is converted to a Starting Die, it remains in play as a Starting Die for every subsequent round until the match is over. Transforming a Reserve Die into a Starting Die is not a requirement if you lose; it is always optional. Characters who just won the previous round cannot transform their Reserve Dice.
+
+For any abilities that look for Variable Dice, Reserve Dice count as Variable Dice.
+
+Reserve Dice first appeared in the Sailor Moon sets.
+
+(Button Men Online symbol: "r") [See also Category:Sets_with_Reserve_Dice]
+
+Rush Dice:
+These are represented as orange on the character card, with an “r” for Rush. Rush Dice have an extra attack as well as an extra vulnerability
+
+Rush Attack: Use one of your Rush Dice to capture two of your opponent’s dice. The numbers on the target dice must add up exactly to the number on the attacking die.
+
+For example, one Rush Die showing 9 can capture two dice showing 4 and 5.
+
+Rush Dice also have a weakness: They can be captured in a Rush Attack by any type of die! Specifically, a Rush Die can be captured, along with one other die of any type (including another Rush Die) by an enemy die, following the same basic rules as a Rush Attack: the two captured dice must add up exactly to the number on the attacking die.
+
+(Button Men Online symbol: "#") (do not let the use of # as shorthand for a n-sized die confuse you. A Rush d6 would be written as "#(6)") [See also Category:Sets_with_Rush_Dice]
+
+Screw Dice:
+The Screw skill is only found on the Buzzing Weasel button. If the Screw Die makes an attack and rolls odd, take another turn. If the Screw Die makes an attack and rolls even, lose the game.
+
+(No BMO notation yet) [See also Officially Released Joke Buttons]
+
+Speed Dice:
+Speed Dice are marked with a lightning bolt on the frame. Speed Dice are normal in all respects, except that they have an additional attack called a Speed Attack. This is basically an inverted Skill attack.
+
+Speed Attack: Use one Speed die to capture any number of your opponent’s dice. The dice you capture must add up exactly to the value of the Speed die. Re-roll the Speed Die and take the captured dice out of play.
+
+(Button Men Online symbol: "z") (looks like a lightning bolt) [See also Category:Sets_with_Speed_Dice]
+
+Shadow Dice:
+Shadow Dice are usually indicated by an “s” on the frame, but in the original Vampyres set they were designated with a horizontal line over the number. This changed with the "Button Men Originals" set.
+
+Shadow Dice are normal in all respects, except that they can not make Power Attacks. Instead, they can make inverted Power Attacks, called Shadow Attacks.
+
+Shadow Attack: Use one of your Shadow Dice to capture one of your opponent’s dice. The target die must show a value equal to or greater than the attacking die, but within its range.
+
+For example, a Shadow 12 showing 7 can capture any value between 7 and 12.
+
+Shadow Dice can make Skill Attacks normally.
+
+(Button Men Online symbol: "s") [See also Category:Sets_with_Shadow_Dice]
+
+Shamrock Dice:
+Shamrock Dice are a variant of the Fudge Die. They are d12's that have the value 13 in the place of the 7. They are worth 13 points when captured.[9] Shamrock Dice have only appeared in the Las Vegas fan expansion.
+
+(Button Men Online Symbol: N/A) Currently not implemented. [See also Category:Sets_with_Shamrock_Dice]
+
+Sleep Dice:
+Sleep Dice do not count for going first.
+
+Sleep Attack: Choose a die with value higher than the value of the Sleep Die. Re-roll both the Sleep Die and the chosen die. The chosen die cannot be used the next turn. (It's asleep!)
+
+(Button Men Online Symbol: "Z") Currently not implemented. (It's asleep!) [See also Category:Sets_with_Sleep_Dice]
+
+Slow Dice:
+Slow Dice do not count for going first.
+
+(Button Men Online symbol: "w") [See also Category:Sets_with_Slow_Dice]
+
+Slow Dice were originally used by Dana Huyler for the rare Brom button Giant on the original Button Men Online site. It was later used in the official promotional set at Origins on the Beatnik Turtle button.
+
+Specialty Dice:
+Specialty Dice, from the Gaming Guardians set, is a variation of Plasma Dice. The abilities that can be chosen are Insult, Loaded, Poison, Shadow, Speed and Trip. Specialty Dice are linked, so multiple Specialty Dice on a character will all have the same chosen ability.
+
+(Button Men Online Symbol: "{I/M/p/s/z/t}(#)") (plasma notation) Currently not implemented.
+
+Stinger Dice:
+Stinger Dice do not count for going first.
+
+Stinger Dice may be used as any number from their lowest possible value up to the value they currently show in a skill attack. A Stinger Die showing 4 and a Stinger Die showing 6 can make a Skill Attack on any die showing 5-10. Two Stinger dice showing 10 could Skill Attack any dice showing from 2-20.
+
+Stinger Dice are marked with the Diceland symbol (a diamond shape) behind or below the dice oval.
+
+(Button Men Online symbol: "g") (S is Select, s is Shadow.) [See also Category:Sets_with_Stinger_Dice]
+
+Stealth Dice:
+Stealth Dice can only make Multi-Die Skill attacks
+
+Stealth Dice may only be captured by multi-die Skill Attacks.
+
+Stealth Dice were introduced in the Howling Wolf/White Tiger set.
+
+(Button Men Online symbol: "d") [See also Category:Sets_with_Stealth_Dice]
+
+Teleport Dice:
+Teleport Attack: Choose an Active Die you don't control. Remove it from the game and add an identical die to your Active Dice. Add an identical die of the same size and skills as your Teleport Die to the Active Dice Pool you don't control, it loses the Teleport skill. Remove your Teleport Die from the game. Players roll their newly added dice.
+
+(Button Men Online symbol: "T") Currently not implemented. [See also Category:Sets_with_Teleport_Dice]
+
+Thief Dice:
+Thief Dice cannot Power Attack.
+
+Thief Attack: Choose an opponent's die with a value less than or equal to the value shown on the Thief Die. Score the Thief Die and place the chosen die into your Active Dice and re-roll it. (The Thief Die scored is worth half of its size in points.)
+
+(Button Men Online Symbol: "$") Currently not implemented. [See also Category:Sets_with_Thief_Dice]
+
+Trip Dice:
+Trip Dice do not count for going first.
+
+Trip Attack: Choose any one opposing die as the Target. Roll both the Trip Die and the Target, then compare the numbers they show. If the Trip Die now shows an equal or greater number than the Target, the Target is captured. Otherwise, the attack merely has the effect of re-rolling both dice.
+
+Trip Dice were introduced in the Lunch Money set. They were indicated by a strikethrough, but James Ernest has said that if the ability is ever re-used, a "t" would most likely be the way he'd indicate trip dice.
+
+(Button Men Online symbol: "t") [See also Category:Sets_with_Trip_Dice]
+
+Time and Space Dice:
+Whenever a Time and Space Die re-rolls an odd number, take an extra turn. Only one extra turn may be taken no matter how many Time and Space Dice roll odd. Time and Space dice were indicated by a pyramid tilted to the left as the dice oval.
+
+Tirade introduced the Time and Space Dice to Button Men.
+
+(Button Men Online symbol: "^") [See also Category:Sets_with_Time_&_Space_Dice]
+
+Twin Dice:
+Twin Dice have two numbers within a figure-eight frame. They are played as two dice that are rolled together and added together.
+
+For example, a Twin 8 is represented as (8,8) and is treated as a single die that can roll values between 2 and 16. The two 8s are rolled as one, captured as one, and scored as one die worth 16 points.
+
+(Button Men Online symbol: " (#,#)") [See also Category:Sets_with_Twin_Dice]
+
+Unique Dice:
+A no-longer used ability that modified the dice that could be chosen for a character with multiple different swing dice variables, such as Gordo and Guillermo. This is now handled as a Special Ability.[10]
+
+Value Dice:
+Value Dice when captured are worth the value currently rolled on the die instead of the size of the Value Die as normal.
+
+If a Value Die is part of an attack, the dice captured gain the Value ability.
+
+(Button Men Online Symbol: "v") [See also Category:Sets_with_Value_Dice]
+
+Value Dice were created by Zomulgustar on the original Button Men Online site.
+
+Warrior Dice:
+Warrior Dice, also called Droid Dice in the Sailor Moon Crystal Challenge set, are a special type of Reserve dice. They are indicated by diamond-shaped dice ovals on the left hand side of the character. They are not part of the initial Starting Dice and can only brought into play as part of a multi-die Skill Attack. Once in play, the dice remain part of the Active Dice until the end of the round. At the beginning of a new round or match, Warrior Dice start out of play. To bring a Warrior Die into play, you must include it at its maximum value as part of a Skill Attack. Only one Warrior Die may be brought into play each turn. Once used in a Skill Attack, the Warrior Die functions like a Standard Die
+
+For example, assume your opponent has a 7 showing on a die and your Active Dice show a 1 and a 2. You could make a Skill Attack against the 7 using the d1 and d2 by bringing in a Warrior d4 (1+2+4=7) or using only the d1 by bringing in a Warrior d6 (1+6=7). Once a Warrior Die is brought into play, it functions as a regular Active Die and must be re-rolled after using it in attacks.
+
+If the Warrior Die has additional Dice Skills, ignore those Dice Skills until the Warrior Die is used in an attack and added to the Active Dice Pool.
+
+As they are a variant of the Reserve Dice, using a Warrior Die is always optional, even if no other attacks can be made.
+
+(Button Men Online symbol: " ` ") [See also Category:Sets_with_Warrior_Dice]
+
+Weak Dice:
+Weak Dice shrink one available die size smaller every time they are re-rolled. Weak Dice first officially appeared in the Space Girlz set exclusive to the first Button Men Online site and the Button Men Mobile app. Weak Dice were originally created for the Button Men Online site by Dana Huyler.
+
+(Button Men Online symbol: "h") [See also Category:Sets_with_Weak_Dice]
+
+Wildcard Dice:
+Wildcard Dice appear in the fan set Las Vegas. These dice are really cards drawn from a standard deck of playing cards, including two Jokers. 2-10 count face value, Jacks 11, Queens 12, Kings 13, Aces 1, and Joker=20. When making a Power Attack an Ace can count as 14. The deck is shuffled once at the start of the match. When a card is 'rerolled' (after an attack, as a result of an opponent's Trip Attack, etc.) the current card is discarded face-down. Neither player may review discarded cards. Cards count as d16's for scoring.[11]
+
+(Button Men Online Symbol: "(C)") [See also Category:Sets_with_Wildcard_Dice]
+
+Zombie Dice:
+Zombie Dice are from a failed Kickstarter for a mobile version of Button Men. If a Zombie Die is used to capture a die, re-roll the captured die and add it to your active dice pool instead of putting it into your Score Pile.
+
+Lost, Unknown, and Proposed Dice Types
+The following are stubs of Dice Types that are referenced but not defined by Button Men sites online. No further information about these dice are currently known, nor are sources for the rules easily found online. Most of this list is from brief references to the dice from old websites or forums found browsing on archive.org that were not notated. Further dice types in this section can be found here.
+
+Proposed, non-tested
+
+Fuzzy Dice - Fuzzy Dice may attack or be attacked as though they showed one more or one less than the value rolled.[12] Fuzzy Dice may be tested within a Cryptid-based set in the future.
+
+Patience - A Patience die that could be subjected to a Speed Attack may automatically capture the appropriate Speed die.  Any number of Speed dice can be captured in a turn. If a Patience die is subjected to a Speed Attack, the attack is cancelled and the Speed die is removed from the game.[13]
+
+Regeneration - At the end of a player's turn any captured regeneration dice that were not captured on the previous turn may be rerolled. Any regeneration dice rolling high&even are reclaimed and become active dice again.[14]
+
+Unknown Source
+
+Broken - remove from game to remove some of opponent's dice from the game?
+
+Dizzy Dice - Referenced in the Bugs page for the original Button Men Online with no description given. Later found to be dice that were not allowed to attack due to the effects of Sleep Dice or due to being turned down to go first via Focus Dice.
+
+Poker - May have been a deck of cards used as a d13 with the card number and suits determining the value of the roll and whether it was a Standard Die, Poison Die, Speed Die, or Shadow Die. This may have been an early version of Wildcard and/or Shamrock Dice.
+
+Multiplayer variants
+(This section currently being worked on; it will be moved to Multiplayer Variants when that page is done)
+
+Single-Character variants
+Free-For-All:
+After the starting roll, the character who rolled the lowest number will go first. From there, the turn proceeds to the left. On your turn, you may make an attack on any other player. The game continues until everyone has passed, and then the player with the highest score wins.
+
+The Cycle: 
+Same as above, except each player can attack only the player on their immediate left. If that player is out of dice, you may attack the next player over, and so on. Option: When playing “The Cycle,” you might want to rearrange the players based on their starting rolls, so that the lowest rolls are earlier in the sequence.
+
+Around the World: 
+In this game, each player plays once with each character, attempting to get the highest total score. Using any of the variations above, play a number of rounds equal to the number of players. After each round, players record their scores, and pass their characters one seat to the left. After every player has played each character once, the game is over and the player with the highest total score wins.
+
+L5R War/Ping Pong:
+Players sit in a circle. The player with the lowest roll goes first. Players with Focus Dice have the chance to use them, starting with the player who is closest to going first, and working up. When a player is attacked, that player takes the next turn. If a player passes, the turn moves to the left. The game continues until every player passes.[15]
+
+Nonce Method:
+Each turn, players may attack an opponent or pass, then play passes to the left. Play ends when one person is the last one with dice after all possible attacks have been made. If all players pass in a round, the next round each player must make an attack if possible.[16]
+
+Multi-Character variants
+Triple-tag team:
+Players pick a team of three characters. Two are placed behind the third. All players roll their starting rolls for their active team member. Lowest roll goes first, and play proceeds to the left. Whenever a character has only one die left, place it in the backup characters and pick a new character, then roll its dice. Instead of attacking, a player may "tag-in" a new character. Whenever a character becomes the active team member, roll its dice. When all three of a player's characters have only one die left, all characters become active team members; re-roll all three remaining dice.
+
+Extended Play variants for two players
+(for more extended play variants, check the Button Men: Beat People Up boxed set rules)
+
+Dale Y's War:
+Each player selects an equal number of Button Men fighters. The characters are selected at random from each player's pool of characters. The two randomly selected characters are played against each other, then the winner puts both into their pool of characters at the bottom of the stack. Repeat this until only one player has any characters left.
+
+MacGuffins
+All Hail the Winslow!
+All Hail the Winslow!
+
+"MacGuffins" are a type of optional add-on to Buttonmen. Only one official MacGuffin exists, The Winslow from the Studio Foglio set. A fan set, Blood on the Ice, functionally reprinted The Winslow and added six new MacGuffins to the game, most based upon Abilities on already printed Rare Button Men.
+
+The term "MacGuffin" is a tribute to The Winslow, who fills that role in Phil Foglio's "Buck Godot: The Gallimaufry" arc of the comic "Buck Godot: Zap Gun for Hire."
+
+MacGuffins typically affect, remove, modify, or replace a button's Variable Dice.
+
+Glossary
+Ability - Some "rare" button men characters (and most of the Sailor Moon characters) have special abilities that modify how the game is played or allow specific actions to be taken. Also called "Iconic Button Specials."
+
+Active Dice - The dice currently in play and able to attack or be attacked. This does not count any dice removed from the game or in a player's scorepad. This also does not include unused Warrior Dice.
+
+Captured Dice - Dice captured (and possibly scored) by your opponent.
+
+Dice Frame - The ovals around the dice numbers and abilities on a Button Men character.
+
+Game - A GAME of button men is either one round (if playing in a match format) or a single playthrough of Button Men. Typically, when a rule refers to a game or the game, the effect ends at the end of the round after scores are tabulated and a winner for the round determined.
+
+Inactive Dice - A die currently out of play. May be a Boom die that has been activated, a Reserve, Sideboard, Take-Five or Warrior that is not currently an Active Die, or a die removed from play by an ability.
+
+Initiative - Gaining Initiative is an older way of saying "determining who goes first." It was used in early Button Men rulebooks, but later dropped.
+
+Match - A best-of-an-amount-of-rounds. Button Men is typically played in best-of-five (or first-to-three) matches. In between rounds, variable dice may be changed by the loser of the previous round played. If no player won the previous round, neither player may change their variable dice.
+
+Nontraditional Dice - d1, d2, d3, d7, d16, d24, d30, and any other die type that is not commonly seen in sets of dice. Please note that these can be very useful as Swing Dice even on characters that do not specifically list a nontraditional die as part of their stats.
+
+Round - One game of Button Men; part of a Match.
+
+Scored Dice - A die placed into a scorepad (usually from being captured from your opponent).
+
+Starting Dice - The dice a character began the round with.
+
+Traditional Dice - d4, d6, d8, d10, d12, d20-- the common "D&D Dice Set." Easy to find, not too expensive.
+
+value - The number currently rolled on a die.
+
+[17]
+
+ http://buttonweavers.com/ui/forum.html#!threadId=472
+ https://web.archive.org/web/20050429155402/http://www.contrib.andrew.cmu.edu/~bc3p/butnlist.txt
+ https://web.archive.org/web/20050429155402/http://www.contrib.andrew.cmu.edu/~bc3p/butnlist.txt
+ https://web.archive.org/web/20050429155402/http://www.contrib.andrew.cmu.edu/~bc3p/butnlist.txt
+ http://web.archive.org/web/20080706172140/http://home.att.net/~kerry_and_ryan/LasVegas.html
+ https://github.com/buttonmen-dev/buttonmen/issues/2173
+ http://www.buttonweavers.com/ui/forum.html#!threadId=380
+ https://github.com/buttonmen-dev/buttonmen/issues/360
+ http://web.archive.org/web/20080706172140/http://home.att.net/~kerry_and_ryan/LasVegas.html
+ https://github.com/buttonmen-dev/buttonmen/issues/265
+ http://web.archive.org/web/20080706172140/http://home.att.net/~kerry_and_ryan/LasVegas.html
+ http://buttonweavers.com/ui/forum.html#!threadId=798
+ http://buttonweavers.com/ui/forum.html#!threadId=801
+ http://buttonweavers.com/ui/forum.html#!threadId=800
+ https://cheapass.com/wp-content/uploads/2018/01/ButtonMenRules.pdf
+ http://www.buttonweavers.com/ui/forum.html#!threadId=90
+ https://web.archive.org/web/20080107083708/http://www.buttonmen.dhs.org:80/~bm/html/skills/
+Categories
+Community content is available under CC-BY-SA unless otherwise noted.
+Comments
+
+Start a conversation
+Sign in to share your thoughts and get the conversation going.
+SIGN IN
+Don't have account? Register now
+
+Fandom logo
+Explore properties
+Fandom
+Fanatical
+GameSpot
+Metacritic
+TV Guide
+Honest Entertainment
+Follow Us
+Overview
+What is Fandom?
+About
+Careers
+Press
+Contact
+Terms of Use
+Privacy Policy
+Digital Services Act
+Global Sitemap
+Local Sitemap
+Do Not Sell My Personal Information
+Community
+Community Central
+Support
+Help
+Advertise
+Media Kit
+Contact
+Fandom Apps
+Take your favorite fandoms with you and never miss a beat.
+Fandom App logo
+Store icon
+Store icon
+Buttonmen Wiki is a Fandom Games Community.
+View Mobile Site
+Search this wiki
+Search all wikis
+
+

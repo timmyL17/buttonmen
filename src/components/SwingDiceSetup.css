@@ -1,0 +1,59 @@
+.swing-setup {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.swing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.player-swing h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.swing-control {
+  margin-bottom: 20px;
+}
+
+.swing-control label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.swing-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.swing-select {
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.swing-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.swing-select:hover {
+  border-color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .swing-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

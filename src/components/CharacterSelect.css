@@ -1,0 +1,84 @@
+.character-select {
+  padding: 40px 20px;
+}
+
+.selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.player-selection h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.character-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.character-card.selected {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+  border-width: 3px;
+}
+
+.character-name {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.character-dice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.die-badge {
+  background-color: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.character-card.selected .die-badge {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+@media (max-width: 768px) {
+  .selection-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .character-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}

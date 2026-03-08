@@ -1,0 +1,53 @@
+.score-display {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.round-info {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.match-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.score-divider {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.score-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}

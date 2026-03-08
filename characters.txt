@@ -1,0 +1,13 @@
+# Soldiers
+Avis 4 4 10 12 X
+Bauer 8 10 12 20 X
+Clare 6 8 8 20 X
+Hammer 6 12 20 20 X
+Hannah 8 10 10 10 X
+Iago 20 20 20 X
+Karl 4 6 6 20 X
+Kith 6 8 12 12 X
+Kublai 4 8 12 20 X
+Niles 6 10 10 12 X
+Shore 4 4 20 20 X
+Stark 4 6 8 X X
