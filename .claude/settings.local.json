@@ -4,7 +4,8 @@
       "WebFetch(domain:buttonmen.fandom.com)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "Bash(npm list:*)"
+      "Bash(npm list:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

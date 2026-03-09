@@ -2,7 +2,6 @@
   padding: 20px;
   max-width: 600px;
   margin: 0 auto;
-  overscroll-behavior: contain;
 }
 
 .swing-grid {
@@ -10,7 +9,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-bottom: 20px;
-  overscroll-behavior: contain;
 }
 
 .player-swing h3 {
@@ -20,81 +18,45 @@
   color: #475569;
 }
 
-.swing-picker-wrapper {
+.swing-select-wrapper {
   margin-bottom: 16px;
 }
 
-.swing-picker-label {
-  text-align: center;
+.swing-select-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-weight: 600;
   font-size: 0.875rem;
-  color: #64748b;
-  margin-bottom: 8px;
+  color: #0f172a;
 }
 
-.custom-swing-picker {
-  height: 150px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+.swing-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
-  background: linear-gradient(to bottom,
-    rgba(248, 250, 252, 1) 0%,
-    rgba(248, 250, 252, 0) 20%,
-    rgba(248, 250, 252, 0) 80%,
-    rgba(248, 250, 252, 1) 100%
-  );
-  touch-action: pan-y;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-family: inherit;
 }
 
-.custom-swing-picker::-webkit-scrollbar {
-  width: 6px;
+.swing-select:focus {
+  outline: none;
+  border-color: #3b82f6;
 }
 
-.custom-swing-picker::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 3px;
+.swing-select:hover {
+  border-color: #cbd5e1;
 }
 
-.custom-swing-picker::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-
-.custom-swing-picker::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.swing-picker-spacer {
-  height: 52.5px;
-  flex-shrink: 0;
-}
-
-.custom-swing-item {
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #94a3b8;
-  opacity: 0.5;
-  transition: all 0.2s;
-  user-select: none;
-}
-
-.custom-swing-item.selected {
-  opacity: 1;
-  color: #0f172a;
-  background-color: #f0fdf4;
-  border-top: 2px solid #10b981;
-  border-bottom: 2px solid #10b981;
-  transform: scale(1.1);
+@media (max-width: 768px) {
+  .swing-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -103,7 +65,7 @@
   }
 
   .swing-grid {
-    gap: 12px;
+    gap: 16px;
   }
 
   .player-swing h3 {
@@ -111,16 +73,17 @@
     margin-bottom: 12px;
   }
 
-  .swing-picker-wrapper {
+  .swing-select-wrapper {
     margin-bottom: 12px;
   }
 
-  .swing-picker-label {
-    font-size: 0.75rem;
-    margin-bottom: 6px;
+  .swing-select-label {
+    font-size: 0.8125rem;
+    gap: 6px;
   }
 
-  .custom-swing-item {
-    font-size: 1.25rem;
+  .swing-select {
+    padding: 10px 12px;
+    font-size: 0.875rem;
   }
 }
