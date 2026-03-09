@@ -58,7 +58,6 @@ export default function SwingDiceSetup({ gameState, onSwingChoicesComplete }) {
           onChange={(val) => onChange(swingType, val.size)}
           height={150}
           itemHeight={45}
-          wheelMode="natural"
         >
           <Picker.Column name="size">
             {values.map(val => (

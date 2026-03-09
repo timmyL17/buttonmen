@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Picker from 'react-mobile-picker';
 import { SOLDIERS } from '../data/characters';
 import './CharacterSelect.css';
@@ -8,6 +8,8 @@ export default function CharacterSelect({ onCharactersSelected }) {
     player1: SOLDIERS[0].name,
     player2: SOLDIERS[1].name
   });
+
+  const containerRef = useRef(null);
 
   const characterOptions = SOLDIERS.reduce((acc, char) => {
     acc[char.name] = char.name;
@@ -25,6 +27,25 @@ export default function CharacterSelect({ onCharactersSelected }) {
       [name]: value
     }));
   };
+
+  // Proper wheel handling that respects system scroll speed
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e) => {
+      const pickerColumn = e.target.closest('.picker-column');
+      if (pickerColumn) {
+        e.stopPropagation();
+        // Don't prevent default - let the browser handle the scroll naturally
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: true });
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
 
   const handleStart = () => {
     const player1Char = SOLDIERS.find(c => c.name === selections.player1);
@@ -53,7 +74,7 @@ export default function CharacterSelect({ onCharactersSelected }) {
       <div className="character-select">
         <h1 className="text-center mb-3">Button Men</h1>
 
-        <div className="pickers-container">
+        <div className="pickers-container" ref={containerRef}>
           <div className="picker-section">
             <h3>Player 1</h3>
             <Picker
@@ -61,7 +82,6 @@ export default function CharacterSelect({ onCharactersSelected }) {
               onChange={(val) => handleChange('player1', val.character)}
               height={300}
               itemHeight={90}
-              wheelMode="natural"
             >
               <Picker.Column name="character">
                 {Object.keys(optionGroups.player1).map(name => (
@@ -80,7 +100,6 @@ export default function CharacterSelect({ onCharactersSelected }) {
               onChange={(val) => handleChange('player2', val.character)}
               height={300}
               itemHeight={90}
-              wheelMode="natural"
             >
               <Picker.Column name="character">
                 {Object.keys(optionGroups.player2).map(name => (
