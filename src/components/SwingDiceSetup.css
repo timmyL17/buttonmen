@@ -55,6 +55,8 @@
 .swing-picker-wrapper :global(.picker-column) {
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
+  overflow-y: auto !important;
+  cursor: pointer;
 }
 
 .swing-picker-wrapper :global(.picker-column::-webkit-scrollbar) {
@@ -69,6 +71,10 @@
 .swing-picker-wrapper :global(.picker-column::-webkit-scrollbar-thumb) {
   background: #cbd5e1;
   border-radius: 3px;
+}
+
+.swing-picker-wrapper :global(.picker-column::-webkit-scrollbar-thumb:hover) {
+  background: #94a3b8;
 }
 
 .swing-picker-wrapper :global(.picker-item) {
