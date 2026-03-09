@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import Picker from 'react-mobile-picker';
 import { SOLDIERS } from '../data/characters';
 import './CharacterSelect.css';
@@ -8,9 +8,6 @@ export default function CharacterSelect({ onCharactersSelected }) {
     player1: SOLDIERS[0].name,
     player2: SOLDIERS[1].name
   });
-
-  const player1Ref = useRef(null);
-  const player2Ref = useRef(null);
 
   const characterOptions = SOLDIERS.reduce((acc, char) => {
     acc[char.name] = char.name;
@@ -28,31 +25,6 @@ export default function CharacterSelect({ onCharactersSelected }) {
       [name]: value
     }));
   };
-
-  // Enable mouse wheel scrolling on desktop
-  useEffect(() => {
-    const handleWheel = (ref, player) => (e) => {
-      const pickerColumn = ref.current?.querySelector('.picker-column');
-      if (pickerColumn) {
-        e.preventDefault();
-        pickerColumn.scrollTop += e.deltaY;
-      }
-    };
-
-    const player1Wheel = handleWheel(player1Ref, 'player1');
-    const player2Wheel = handleWheel(player2Ref, 'player2');
-
-    const p1 = player1Ref.current;
-    const p2 = player2Ref.current;
-
-    if (p1) p1.addEventListener('wheel', player1Wheel, { passive: false });
-    if (p2) p2.addEventListener('wheel', player2Wheel, { passive: false });
-
-    return () => {
-      if (p1) p1.removeEventListener('wheel', player1Wheel);
-      if (p2) p2.removeEventListener('wheel', player2Wheel);
-    };
-  }, []);
 
   const handleStart = () => {
     const player1Char = SOLDIERS.find(c => c.name === selections.player1);
@@ -82,7 +54,7 @@ export default function CharacterSelect({ onCharactersSelected }) {
         <h1 className="text-center mb-3">Button Men</h1>
 
         <div className="pickers-container">
-          <div className="picker-section" ref={player1Ref}>
+          <div className="picker-section">
             <h3>Player 1</h3>
             <Picker
               value={{ character: selections.player1 }}
@@ -101,7 +73,7 @@ export default function CharacterSelect({ onCharactersSelected }) {
             </Picker>
           </div>
 
-          <div className="picker-section" ref={player2Ref}>
+          <div className="picker-section">
             <h3>Player 2</h3>
             <Picker
               value={{ character: selections.player2 }}

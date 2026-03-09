@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Picker from 'react-mobile-picker';
 import { SWING_RANGES } from '../data/characters';
 import { getSwingDice } from '../game/dice';
@@ -37,28 +37,6 @@ export default function SwingDiceSetup({ gameState, onSwingChoicesComplete }) {
   const handleStart = () => {
     onSwingChoicesComplete(player1Selections, player2Selections);
   };
-
-  // Enable mouse wheel scrolling on desktop
-  useEffect(() => {
-    const handleWheel = (e) => {
-      const target = e.target.closest('.swing-picker-wrapper');
-      if (target) {
-        const pickerColumn = target.querySelector('.picker-column');
-        if (pickerColumn) {
-          e.preventDefault();
-          pickerColumn.scrollTop += e.deltaY;
-        }
-      }
-    };
-
-    const container = document.querySelector('.swing-setup');
-    if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-      return () => {
-        container.removeEventListener('wheel', handleWheel);
-      };
-    }
-  }, []);
 
   const renderSwingPicker = (swingType, value, onChange, player) => {
     const range = SWING_RANGES[swingType];
