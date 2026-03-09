@@ -1,72 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Picker from 'react-mobile-picker';
 import { SOLDIERS } from '../data/characters';
 import './CharacterSelect.css';
 
 export default function CharacterSelect({ onCharactersSelected }) {
-  const [selections, setSelections] = useState({
-    player1: SOLDIERS[0].name,
-    player2: SOLDIERS[1].name
-  });
+  const [player1Index, setPlayer1Index] = useState(0);
+  const [player2Index, setPlayer2Index] = useState(1);
 
-  const containerRef = useRef(null);
+  const player1Ref = useRef(null);
+  const player2Ref = useRef(null);
 
-  const characterOptions = SOLDIERS.reduce((acc, char) => {
-    acc[char.name] = char.name;
-    return acc;
-  }, {});
-
-  const optionGroups = {
-    player1: characterOptions,
-    player2: characterOptions
+  const updateSelection = (ref, setIndex) => {
+    if (!ref.current) return;
+    const container = ref.current;
+    const scrollTop = container.scrollTop;
+    const itemHeight = 90;
+    const index = Math.round(scrollTop / itemHeight);
+    setIndex(Math.max(0, Math.min(SOLDIERS.length - 1, index)));
   };
 
-  const handleChange = (name, value) => {
-    setSelections(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  // Proper wheel handling that respects system scroll speed
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const p1 = player1Ref.current;
+    const p2 = player2Ref.current;
 
-    const handleWheel = (e) => {
-      const pickerColumn = e.target.closest('.picker-column');
-      if (pickerColumn) {
-        e.stopPropagation();
-        // Don't prevent default - let the browser handle the scroll naturally
-      }
-    };
+    const handlePlayer1Scroll = () => updateSelection(player1Ref, setPlayer1Index);
+    const handlePlayer2Scroll = () => updateSelection(player2Ref, setPlayer2Index);
 
-    container.addEventListener('wheel', handleWheel, { passive: true });
+    if (p1) p1.addEventListener('scroll', handlePlayer1Scroll, { passive: true });
+    if (p2) p2.addEventListener('scroll', handlePlayer2Scroll, { passive: true });
+
     return () => {
-      container.removeEventListener('wheel', handleWheel);
+      if (p1) p1.removeEventListener('scroll', handlePlayer1Scroll);
+      if (p2) p2.removeEventListener('scroll', handlePlayer2Scroll);
     };
   }, []);
 
   const handleStart = () => {
-    const player1Char = SOLDIERS.find(c => c.name === selections.player1);
-    const player2Char = SOLDIERS.find(c => c.name === selections.player2);
-    onCharactersSelected(player1Char, player2Char);
-  };
-
-  const renderCharacterItem = (name, selected) => {
-    const char = SOLDIERS.find(c => c.name === name);
-    return (
-      <div className="picker-character-item">
-        <div className="picker-name">{char.name}</div>
-        <div className="picker-dice">
-          {char.dice.map((die, idx) => (
-            <span key={idx} className="picker-die-badge">
-              {typeof die === 'string' ? die : `d${die}`}
-            </span>
-          ))}
-        </div>
-      </div>
-    );
+    onCharactersSelected(SOLDIERS[player1Index], SOLDIERS[player2Index]);
   };
 
   return (
@@ -74,41 +43,51 @@ export default function CharacterSelect({ onCharactersSelected }) {
       <div className="character-select">
         <h1 className="text-center mb-3">Button Men</h1>
 
-        <div className="pickers-container" ref={containerRef}>
+        <div className="pickers-container">
           <div className="picker-section">
             <h3>Player 1</h3>
-            <Picker
-              value={{ character: selections.player1 }}
-              onChange={(val) => handleChange('player1', val.character)}
-              height={300}
-              itemHeight={90}
-            >
-              <Picker.Column name="character">
-                {Object.keys(optionGroups.player1).map(name => (
-                  <Picker.Item key={name} value={name}>
-                    {renderCharacterItem(name, selections.player1 === name)}
-                  </Picker.Item>
-                ))}
-              </Picker.Column>
-            </Picker>
+            <div className="custom-picker" ref={player1Ref}>
+              <div className="picker-spacer"></div>
+              {SOLDIERS.map((char, idx) => (
+                <div
+                  key={char.name}
+                  className={`custom-picker-item ${idx === player1Index ? 'selected' : ''}`}
+                >
+                  <div className="picker-name">{char.name}</div>
+                  <div className="picker-dice">
+                    {char.dice.map((die, dieIdx) => (
+                      <span key={dieIdx} className="picker-die-badge">
+                        {typeof die === 'string' ? die : `d${die}`}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="picker-spacer"></div>
+            </div>
           </div>
 
           <div className="picker-section">
             <h3>Player 2</h3>
-            <Picker
-              value={{ character: selections.player2 }}
-              onChange={(val) => handleChange('player2', val.character)}
-              height={300}
-              itemHeight={90}
-            >
-              <Picker.Column name="character">
-                {Object.keys(optionGroups.player2).map(name => (
-                  <Picker.Item key={name} value={name}>
-                    {renderCharacterItem(name, selections.player2 === name)}
-                  </Picker.Item>
-                ))}
-              </Picker.Column>
-            </Picker>
+            <div className="custom-picker" ref={player2Ref}>
+              <div className="picker-spacer"></div>
+              {SOLDIERS.map((char, idx) => (
+                <div
+                  key={char.name}
+                  className={`custom-picker-item ${idx === player2Index ? 'selected' : ''}`}
+                >
+                  <div className="picker-name">{char.name}</div>
+                  <div className="picker-dice">
+                    {char.dice.map((die, dieIdx) => (
+                      <span key={dieIdx} className="picker-die-badge">
+                        {typeof die === 'string' ? die : `d${die}`}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="picker-spacer"></div>
+            </div>
           </div>
         </div>
 

@@ -25,13 +25,67 @@
   color: #475569;
 }
 
-.picker-character-item {
+.custom-picker {
+  height: 300px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(to bottom,
+    rgba(248, 250, 252, 1) 0%,
+    rgba(248, 250, 252, 0) 15%,
+    rgba(248, 250, 252, 0) 85%,
+    rgba(248, 250, 252, 1) 100%
+  );
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.custom-picker::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-picker::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.custom-picker::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.custom-picker::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.picker-spacer {
+  height: 105px;
+  flex-shrink: 0;
+}
+
+.custom-picker-item {
+  height: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 8px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transition: all 0.2s;
+  opacity: 0.4;
   user-select: none;
+}
+
+.custom-picker-item.selected {
+  opacity: 1;
+  background-color: #f0fdf4;
+  border-top: 2px solid #10b981;
+  border-bottom: 2px solid #10b981;
 }
 
 .picker-name {
@@ -39,6 +93,10 @@
   font-size: 1.125rem;
   margin-bottom: 6px;
   color: #0f172a;
+}
+
+.custom-picker-item.selected .picker-name {
+  color: #065f46;
 }
 
 .picker-dice {
@@ -57,73 +115,9 @@
   color: #475569;
 }
 
-/* Override react-mobile-picker styles */
-.picker-section :global(.picker-container) {
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  background: linear-gradient(to bottom,
-    rgba(248, 250, 252, 1) 0%,
-    rgba(248, 250, 252, 0) 15%,
-    rgba(248, 250, 252, 0) 85%,
-    rgba(248, 250, 252, 1) 100%
-  );
-  touch-action: pan-y;
-  overscroll-behavior: contain;
-}
-
-.picker-section :global(.picker-column) {
-  scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 #f1f5f9;
-  overflow-y: auto !important;
-  cursor: pointer;
-  touch-action: pan-y;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-.picker-section :global(.picker-column::-webkit-scrollbar) {
-  width: 8px;
-}
-
-.picker-section :global(.picker-column::-webkit-scrollbar-track) {
-  background: #f1f5f9;
-  border-radius: 4px;
-}
-
-.picker-section :global(.picker-column::-webkit-scrollbar-thumb) {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-.picker-section :global(.picker-column::-webkit-scrollbar-thumb:hover) {
-  background: #94a3b8;
-}
-
-.picker-section :global(.picker-item) {
-  opacity: 0.4;
-  transition: all 0.2s;
-  pointer-events: none;
-}
-
-.picker-section :global(.picker-item.picker-item-selected) {
-  opacity: 1;
-  background-color: #f0fdf4;
-}
-
-.picker-section :global(.picker-item.picker-item-selected) .picker-name {
-  color: #065f46;
-}
-
-.picker-section :global(.picker-item.picker-item-selected) .picker-die-badge {
+.custom-picker-item.selected .picker-die-badge {
   background-color: #d1fae5;
   color: #065f46;
-}
-
-.picker-section :global(.picker-highlight) {
-  border-top: 2px solid #10b981;
-  border-bottom: 2px solid #10b981;
-  background-color: transparent;
-  pointer-events: none;
 }
 
 @media (max-width: 480px) {
@@ -133,6 +127,18 @@
 
   .pickers-container {
     gap: 12px;
+  }
+
+  .custom-picker {
+    height: 270px;
+  }
+
+  .picker-spacer {
+    height: 90px;
+  }
+
+  .custom-picker-item {
+    height: 90px;
   }
 
   .picker-name {

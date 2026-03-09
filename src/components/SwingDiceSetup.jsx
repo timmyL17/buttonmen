@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Picker from 'react-mobile-picker';
+import React, { useState, useEffect, useRef } from 'react';
 import { SWING_RANGES } from '../data/characters';
 import { getSwingDice } from '../game/dice';
 import './SwingDiceSetup.css';
@@ -12,61 +11,103 @@ export default function SwingDiceSetup({ gameState, onSwingChoicesComplete }) {
   const player1SwingTypes = [...new Set(player1SwingDice.map(d => d.swingType))];
   const player2SwingTypes = [...new Set(player2SwingDice.map(d => d.swingType))];
 
-  // Initialize with middle value
-  const getInitialValue = (swingType) => {
+  // Initialize with middle index
+  const getInitialIndex = (swingType) => {
     const range = SWING_RANGES[swingType];
-    const mid = Math.floor((range.max + range.min) / 2);
-    return mid;
+    return Math.floor((range.max - range.min) / 2);
   };
 
-  const [player1Selections, setPlayer1Selections] = useState(
-    Object.fromEntries(player1SwingTypes.map(type => [type, getInitialValue(type)]))
+  const [player1Indices, setPlayer1Indices] = useState(
+    Object.fromEntries(player1SwingTypes.map(type => [type, getInitialIndex(type)]))
   );
-  const [player2Selections, setPlayer2Selections] = useState(
-    Object.fromEntries(player2SwingTypes.map(type => [type, getInitialValue(type)]))
+  const [player2Indices, setPlayer2Indices] = useState(
+    Object.fromEntries(player2SwingTypes.map(type => [type, getInitialIndex(type)]))
   );
 
-  const handlePlayer1Change = (swingType, value) => {
-    setPlayer1Selections(prev => ({ ...prev, [swingType]: parseInt(value) }));
+  const pickerRefs = useRef({});
+
+  const updateSelection = (swingType, player) => {
+    const ref = pickerRefs.current[`${player}-${swingType}`];
+    if (!ref) return;
+
+    const scrollTop = ref.scrollTop;
+    const itemHeight = 45;
+    const index = Math.round(scrollTop / itemHeight);
+
+    const range = SWING_RANGES[swingType];
+    const maxIndex = range.max - range.min;
+    const clampedIndex = Math.max(0, Math.min(maxIndex, index));
+
+    if (player === 'player1') {
+      setPlayer1Indices(prev => ({ ...prev, [swingType]: clampedIndex }));
+    } else {
+      setPlayer2Indices(prev => ({ ...prev, [swingType]: clampedIndex }));
+    }
   };
 
-  const handlePlayer2Change = (swingType, value) => {
-    setPlayer2Selections(prev => ({ ...prev, [swingType]: parseInt(value) }));
-  };
+  useEffect(() => {
+    const listeners = [];
+
+    Object.keys(pickerRefs.current).forEach(key => {
+      const ref = pickerRefs.current[key];
+      const [player, swingType] = key.split('-');
+
+      if (ref) {
+        const handler = () => updateSelection(swingType, player);
+        ref.addEventListener('scroll', handler, { passive: true });
+        listeners.push({ ref, handler });
+      }
+    });
+
+    return () => {
+      listeners.forEach(({ ref, handler }) => {
+        ref.removeEventListener('scroll', handler);
+      });
+    };
+  }, []);
 
   const handleStart = () => {
+    const player1Selections = {};
+    const player2Selections = {};
+
+    player1SwingTypes.forEach(type => {
+      const range = SWING_RANGES[type];
+      player1Selections[type] = range.min + player1Indices[type];
+    });
+
+    player2SwingTypes.forEach(type => {
+      const range = SWING_RANGES[type];
+      player2Selections[type] = range.min + player2Indices[type];
+    });
+
     onSwingChoicesComplete(player1Selections, player2Selections);
   };
 
-  const renderSwingPicker = (swingType, value, onChange, player) => {
+  const renderSwingPicker = (swingType, index, player) => {
     const range = SWING_RANGES[swingType];
     const values = Array.from(
       { length: range.max - range.min + 1 },
       (_, i) => range.min + i
     );
 
-    const options = values.reduce((acc, val) => {
-      acc[val] = `d${val}`;
-      return acc;
-    }, {});
-
     return (
       <div className="swing-picker-wrapper" key={swingType}>
         <div className="swing-picker-label">{swingType} Swing Die</div>
-        <Picker
-          value={{ size: value }}
-          onChange={(val) => onChange(swingType, val.size)}
-          height={150}
-          itemHeight={45}
+        <div
+          className="custom-swing-picker"
+          ref={el => pickerRefs.current[`${player}-${swingType}`] = el}
         >
-          <Picker.Column name="size">
-            {values.map(val => (
-              <Picker.Item key={val} value={val}>
-                <div className="swing-value">d{val}</div>
-              </Picker.Item>
-            ))}
-          </Picker.Column>
-        </Picker>
+          <div className="swing-picker-spacer"></div>
+          {values.map((val, idx) => (
+            <div
+              key={val}
+              className={`custom-swing-item ${idx === index ? 'selected' : ''}`}
+            >
+              d{val}
+            </div>
+          ))}
+          <div className="swing-picker-spacer"></div>
+        </div>
       </div>
     );
   };
@@ -82,14 +123,14 @@ export default function SwingDiceSetup({ gameState, onSwingChoicesComplete }) {
           <div className="player-swing">
             <h3>Player 1: {gameState.player1.character.name}</h3>
             {player1SwingTypes.map(type =>
-              renderSwingPicker(type, player1Selections[type], handlePlayer1Change, 'player1')
+              renderSwingPicker(type, player1Indices[type], 'player1')
             )}
           </div>
 
           <div className="player-swing">
             <h3>Player 2: {gameState.player2.character.name}</h3>
             {player2SwingTypes.map(type =>
-              renderSwingPicker(type, player2Selections[type], handlePlayer2Change, 'player2')
+              renderSwingPicker(type, player2Indices[type], 'player2')
             )}
           </div>
         </div>
