@@ -43,8 +43,31 @@
   margin-left: auto;
 }
 
+@media (max-width: 480px) {
+  .player-area {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .player-header {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .player-header h3 {
+    font-size: 1rem;
+  }
+
+  .character-name,
+  .turn-indicator {
+    font-size: 0.6875rem;
+    padding: 2px 8px;
+  }
+}
+
 .dice-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 0;
+  justify-content: flex-start;
 }

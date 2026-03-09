@@ -49,3 +49,30 @@
   flex: 1;
   max-width: 200px;
 }
+
+@media (max-width: 480px) {
+  .attack-panel {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .attack-panel h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 8px;
+  }
+
+  .attack-status {
+    min-height: 40px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .attack-status p {
+    font-size: 0.8125rem;
+  }
+
+  .attack-buttons button {
+    font-size: 0.8125rem;
+    padding: 8px 16px;
+  }
+}

@@ -25,6 +25,55 @@
   color: #0f172a;
 }
 
+/* Tablet and smaller */
+@media (max-width: 768px) {
+  .die {
+    width: 52px;
+    height: 52px;
+    margin: 3px;
+  }
+
+  .die-label {
+    font-size: 0.5625rem;
+  }
+
+  .die-value {
+    font-size: 1.125rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .die {
+    width: 48px;
+    height: 48px;
+    margin: 2px;
+    border-radius: 6px;
+  }
+
+  .die-label {
+    font-size: 0.5rem;
+    margin-bottom: 1px;
+  }
+
+  .die-value {
+    font-size: 1rem;
+  }
+}
+
+/* Small phones (iPhone SE, etc) */
+@media (max-width: 375px) {
+  .die {
+    width: 44px;
+    height: 44px;
+    margin: 2px;
+  }
+
+  .die-value {
+    font-size: 0.9375rem;
+  }
+}
+
 .die-player1 {
   border-color: #3b82f6;
 }
