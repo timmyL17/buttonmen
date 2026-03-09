@@ -59,11 +59,13 @@ export default function SwingDiceSetup({ gameState, onSwingChoicesComplete }) {
           height={150}
           itemHeight={45}
         >
-          {values.map(val => (
-            <Picker.Item key={val} value={val}>
-              <div className="swing-value">d{val}</div>
-            </Picker.Item>
-          ))}
+          <Picker.Column name="size">
+            {values.map(val => (
+              <Picker.Item key={val} value={val}>
+                <div className="swing-value">d{val}</div>
+              </Picker.Item>
+            ))}
+          </Picker.Column>
         </Picker>
       </div>
     );

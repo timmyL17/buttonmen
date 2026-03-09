@@ -62,11 +62,13 @@ export default function CharacterSelect({ onCharactersSelected }) {
               height={300}
               itemHeight={90}
             >
-              {Object.keys(optionGroups.player1).map(name => (
-                <Picker.Item key={name} value={name}>
-                  {renderCharacterItem(name, selections.player1 === name)}
-                </Picker.Item>
-              ))}
+              <Picker.Column name="character">
+                {Object.keys(optionGroups.player1).map(name => (
+                  <Picker.Item key={name} value={name}>
+                    {renderCharacterItem(name, selections.player1 === name)}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
             </Picker>
           </div>
 
@@ -78,11 +80,13 @@ export default function CharacterSelect({ onCharactersSelected }) {
               height={300}
               itemHeight={90}
             >
-              {Object.keys(optionGroups.player2).map(name => (
-                <Picker.Item key={name} value={name}>
-                  {renderCharacterItem(name, selections.player2 === name)}
-                </Picker.Item>
-              ))}
+              <Picker.Column name="character">
+                {Object.keys(optionGroups.player2).map(name => (
+                  <Picker.Item key={name} value={name}>
+                    {renderCharacterItem(name, selections.player2 === name)}
+                  </Picker.Item>
+                ))}
+              </Picker.Column>
             </Picker>
           </div>
         </div>
