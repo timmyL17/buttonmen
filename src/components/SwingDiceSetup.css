@@ -30,66 +30,67 @@
   margin-bottom: 8px;
 }
 
-.swing-picker {
-  height: 180px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  position: relative;
+.swing-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  user-select: none;
+}
+
+/* Override react-mobile-picker styles for swing pickers */
+.swing-picker-wrapper :global(.picker-container) {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   background: linear-gradient(to bottom,
     rgba(248, 250, 252, 1) 0%,
     rgba(248, 250, 252, 0) 20%,
     rgba(248, 250, 252, 0) 80%,
     rgba(248, 250, 252, 1) 100%
   );
-  border-radius: 8px;
-  border: 2px solid #e2e8f0;
 }
 
-.swing-picker::-webkit-scrollbar {
+.swing-picker-wrapper :global(.picker-column) {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.swing-picker-wrapper :global(.picker-column::-webkit-scrollbar) {
   width: 6px;
 }
 
-.swing-picker::-webkit-scrollbar-track {
+.swing-picker-wrapper :global(.picker-column::-webkit-scrollbar-track) {
   background: #f1f5f9;
   border-radius: 3px;
 }
 
-.swing-picker::-webkit-scrollbar-thumb {
+.swing-picker-wrapper :global(.picker-column::-webkit-scrollbar-thumb) {
   background: #cbd5e1;
   border-radius: 3px;
 }
 
-.swing-picker::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.swing-picker-padding {
-  height: 60px;
-  flex-shrink: 0;
-}
-
-.swing-picker-item {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #94a3b8;
-  transition: all 0.2s;
+.swing-picker-wrapper :global(.picker-item) {
   opacity: 0.5;
-  transform: scale(0.85);
+  transition: all 0.2s;
+  color: #94a3b8;
 }
 
-.swing-picker-item.selected {
+.swing-picker-wrapper :global(.picker-item.picker-item-selected) {
   opacity: 1;
-  transform: scale(1.1);
   color: #0f172a;
   background-color: #f0fdf4;
+}
+
+.swing-picker-wrapper :global(.picker-item.picker-item-selected) .swing-value {
+  transform: scale(1.1);
+}
+
+.swing-picker-wrapper :global(.picker-highlight) {
   border-top: 2px solid #10b981;
   border-bottom: 2px solid #10b981;
+  background-color: transparent;
 }
 
 @media (max-width: 480px) {
@@ -115,16 +116,7 @@
     margin-bottom: 6px;
   }
 
-  .swing-picker {
-    height: 150px;
-  }
-
-  .swing-picker-padding {
-    height: 45px;
-  }
-
-  .swing-picker-item {
-    height: 45px;
+  .swing-value {
     font-size: 1.25rem;
   }
 }
