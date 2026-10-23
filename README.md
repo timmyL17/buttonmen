@@ -1,114 +1,34 @@
-# Button Men PWA
+# Button Men
 
-A Progressive Web App implementation of the Button Men dice game.
+A mobile-first progressive web app of James Ernest's dice-rolling fighting game
+*Button Men* (Cheapass Games). Hot-seat for now: one person controls both
+players.
 
-## Features
-
-- ✅ Character selection from the Soldiers set (12 characters)
-- ✅ X Swing dice support
-- ✅ Power and Skill attacks
-- ✅ Best of 5 rounds (first to 3 wins)
-- ✅ Modern, clean UI with reactive state updates
-- ✅ PWA support for offline play and installation
-
-## Getting Started
-
-### Install Dependencies
+## Commands
 
 ```bash
 npm install
+npm run dev      # dev server, also reachable from your phone on the LAN
+npm test         # engine unit tests + random full-match simulations
+npm run build    # typecheck + production build into dist/
+npm run preview  # serve dist/ (service worker active here, not in dev)
 ```
 
-### Run Development Server
+## Layout
 
-```bash
-npm run dev
-```
+- `src/engine/`: pure, UI-free game logic. `GameState` is plain JSON.
+  `applyAction(state, action, rng)` returns a new state; `legalAttacks(state)`
+  lists every legal move (this is what an AI opponent will build on).
+- `src/ui/`: vanilla TypeScript views rendered from state, with event delegation.
+- `public/`: web manifest, service worker, icons.
 
-Open http://localhost:5173/ in your browser.
+## Rules implemented
 
-### Build for Production
+Power and skill attacks, mandatory attacks, round end on two passes or no dice,
+scoring (captured = full size, kept = half), first to 3 rounds, swing dice
+(R–Z) where only the round loser may change sizes, option dice and twin dice.
+Die skills: Poison, Shadow, Speed, Berserk, Trip, Null, Queer, Stinger, Mood
+swing. Button recipes come from the open-source Buttonweavers database.
 
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Deploy to GitHub Pages
-
-This project is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
-
-### Setup Steps:
-
-1. **Create a GitHub repository** named `buttonm`
-
-2. **Enable GitHub Pages**:
-   - Go to your repository settings
-   - Navigate to Pages section (Settings → Pages)
-   - Under "Source", select "GitHub Actions"
-
-3. **Push your code**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/buttonm.git
-   git push -u origin main
-   ```
-
-4. **Automatic deployment**: The GitHub Action will automatically build and deploy your site to:
-   ```
-   https://YOUR-USERNAME.github.io/buttonm/
-   ```
-
-### Local Configuration
-
-The app is configured with `base: '/buttonm/'` in `vite.config.js` for GitHub Pages deployment. If you want to deploy to a different path or use a custom domain, update this value.
-
-## How to Play
-
-1. **Character Selection**: Both players choose a character from the Soldiers set
-2. **Swing Dice Setup**: Choose sizes for X swing dice (4-20 sides)
-3. **Gameplay**:
-   - Dice are rolled automatically
-   - The player with the lowest die goes first
-   - On your turn, select your dice to attack with, then select an opponent die to capture
-   - **Power Attack**: Use one die with value ≥ target die value
-   - **Skill Attack**: Use multiple dice that sum exactly to target die value
-   - After attacking, your attacking dice are re-rolled
-   - If you can't attack, you must pass
-   - Round ends when both players pass
-4. **Scoring**:
-   - Captured dice: full points (die size)
-   - Remaining dice: half points (rounded down)
-5. **Winning**: First player to win 3 rounds wins the match
-
-## Project Structure
-
-```
-src/
-├── components/     # React components
-├── game/          # Game logic
-├── data/          # Character data
-└── styles/        # CSS styles
-```
-
-## Technologies
-
-- React 18
-- Vite
-- PWA (with vite-plugin-pwa)
-
-## Future Enhancements
-
-- More dice types (Poison, Shadow, Berserk, etc.)
-- AI opponent
-- Online multiplayer
-- Additional character sets
-- Statistics and match history
+Not yet supported: Focus, Chance, Fire, Turbo and other skills that need
+extra decisions mid-turn or before initiative.
