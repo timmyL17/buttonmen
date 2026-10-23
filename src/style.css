@@ -858,3 +858,15 @@ button {
   50% { content: '..'; }
   75% { content: '...'; }
 }
+.match-note {
+  margin: -6px 0 0;
+}
+.match-score {
+  font-weight: 600;
+}
+.match-score .tally {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 6px;
+  font-variant-numeric: tabular-nums;
+}

@@ -731,10 +731,20 @@ export class App {
     const history = g.results
       .map((r) => `<li>R${r.round}: ${fmt(r.scores[0])}–${fmt(r.scores[1])} ${r.winner === null ? 'draw' : `· ${esc(g.players[r.winner].name)}`}</li>`)
       .join('');
+    const [a, b] = g.players;
+    const toGo = (p: PlayerState) => g.winsNeeded - p.roundsWon;
+    const closest = toGo(a) <= toGo(b) ? a : b;
+    const need = toGo(closest);
+    const matchNote = over
+      ? `Final score after ${g.results.length} rounds.`
+      : `First to ${g.winsNeeded} round wins takes the match. ${esc(closest.name)} needs ${need} more ${need === 1 ? 'win' : 'wins'}${
+          toGo(a) === toGo(b) ? ', and so does ' + esc(closest === a ? b.name : a.name) : ''
+        }.`;
     return `<div class="overlay"><div class="modal">
       <h2>${title}</h2>
       ${row(0)}${row(1)}
-      <div class="match-score">Rounds: ${g.players[0].roundsWon} – ${g.players[1].roundsWon}</div>
+      <div class="match-score">${esc(a.name)} <span class="tally">${a.roundsWon} – ${b.roundsWon}</span> ${esc(b.name)}</div>
+      <p class="muted small center match-note">${matchNote}</p>
       <ul class="history muted">${history}</ul>
       ${
         over
