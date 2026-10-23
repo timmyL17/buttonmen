@@ -4,3 +4,4 @@ export * from './buttons';
 export * from './dice';
 export * from './attacks';
 export * from './game';
+export * from './resolve';

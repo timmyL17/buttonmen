@@ -101,8 +101,11 @@ function* subsets<T>(items: T[]): Generator<T[]> {
 /** Every legal attack for the player whose turn it is. */
 export function legalAttacks(state: GameState): Attack[] {
   if (state.phase !== 'play') return [];
-  const mine = state.players[state.turn].dice;
-  const theirs = state.players[1 - state.turn].dice;
+  return legalAttacksFor(state.players[state.turn].dice, state.players[1 - state.turn].dice);
+}
+
+/** Every legal attack by one set of dice against another. */
+export function legalAttacksFor(mine: Die[], theirs: Die[]): Attack[] {
   const out: Attack[] = [];
   const ids = (ds: Die[]) => ds.map((d) => d.id);
   const add = (type: AttackType, att: Die[], tgt: Die[]) => {

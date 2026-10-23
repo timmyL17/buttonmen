@@ -1,6 +1,7 @@
 import { ATTACK_NAMES, hasLegalAttack, validateAttack } from './attacks';
-import { countsForInitiative, describeDie, dieValue, has, playerScore, rollDie } from './dice';
-import { MOOD_SIZES, SWING_RANGES, hasChoices, optionIndices, parseRecipe, swingLetters } from './recipe';
+import { countsForInitiative, describeDie, dieValue, playerScore, rollDie } from './dice';
+import { SWING_RANGES, hasChoices, optionIndices, parseRecipe, swingLetters } from './recipe';
+import { resolveAttack } from './resolve';
 import type { Action, Attack, ButtonDef, Die, GameState, PlayerId, PlayerState, Rng, SwingLetter } from './types';
 
 const other = (p: PlayerId): PlayerId => (p === 0 ? 1 : 0);
@@ -98,7 +99,7 @@ function doSetup(
   if (!state.awaitingSetup[0] && !state.awaitingSetup[1]) startRound(state, rng);
 }
 
-function buildDice(p: PlayerState, owner: PlayerId): Die[] {
+export function buildDice(p: Pick<PlayerState, 'specs' | 'swing' | 'options'>, owner: PlayerId): Die[] {
   return p.specs.map((spec, i) => {
     const swing = spec.sides.find((s): s is SwingLetter => typeof s === 'string');
     const sides = spec.options
@@ -146,51 +147,21 @@ function doAttack(state: GameState, attack: Attack, rng: Rng) {
   const att = attack.attackers.map((id) => me.dice.find((d) => d.id === id)!);
   const tgt = attack.targets.map((id) => opp.dice.find((d) => d.id === id)!);
   const before = `${att.map(describeDie).join(' + ')} vs ${tgt.map(describeDie).join(' + ')}`;
-  let text: string;
 
+  const out = resolveAttack(me, opp, attack, rng);
+  let text: string;
   if (attack.type === 'trip') {
-    const [a] = att;
-    const [t] = tgt;
-    rollDie(a, rng);
-    rollDie(t, rng);
-    const hit = dieValue(a) >= dieValue(t);
-    text = `Trip attack: ${before}: rolled ${dieValue(a)} vs ${dieValue(t)}, ${hit ? 'captured!' : 'missed.'}`;
-    state.lastAction = { rolled: [a.id, t.id], captured: [] };
-    if (hit) capture(state, [t], att);
+    const [a, t] = out.rolled;
+    text = `Trip attack: ${before}: rolled ${dieValue(a)} vs ${dieValue(t)}, ${out.captured.length ? 'captured!' : 'missed.'}`;
   } else {
-    capture(state, tgt, att);
-    for (const a of att) {
-      if (attack.type === 'berserk') {
-        a.skills = a.skills.filter((s) => s !== 'B');
-        a.sides = a.sides.map((s) => Math.ceil(s / 2));
-        a.swing = undefined;
-      }
-      if (a.mood && a.swing) {
-        const [lo, hi] = SWING_RANGES[a.swing];
-        const sizes = MOOD_SIZES.filter((s) => s >= lo && s <= hi);
-        const size = sizes[Math.floor(rng() * sizes.length)];
-        a.sides = a.sides.map(() => size);
-      }
-      rollDie(a, rng);
-    }
-    text = `${ATTACK_NAMES[attack.type]} attack: ${before}, captured. Rerolled to ${att.map((d) => dieValue(d)).join(', ')}.`;
-    state.lastAction = { rolled: att.map((d) => d.id), captured: tgt.map((d) => d.id) };
+    text = `${ATTACK_NAMES[attack.type]} attack: ${before}, captured. Rerolled to ${out.rolled.map(dieValue).join(', ')}.`;
   }
+  state.lastAction = { rolled: out.rolled.map((d) => d.id), captured: out.captured.map((d) => d.id) };
 
   state.log.push({ round: state.round, player: state.turn, text });
   state.passes = 0;
   if (me.dice.length === 0 || opp.dice.length === 0) endRound(state);
   else state.turn = other(state.turn);
-}
-
-function capture(state: GameState, targets: Die[], attackers: Die[]) {
-  const me = state.players[state.turn];
-  const opp = state.players[other(state.turn)];
-  const nulled = attackers.some((a) => has(a, 'n'));
-  for (const t of targets) {
-    opp.dice = opp.dice.filter((d) => d.id !== t.id);
-    me.captured.push(nulled ? { ...t, nulled: true } : t);
-  }
 }
 
 function doPass(state: GameState) {

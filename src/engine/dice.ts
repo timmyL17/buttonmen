@@ -37,7 +37,7 @@ export function capturedValue(d: Die): number {
   return dieSize(d);
 }
 
-export function playerScore(p: PlayerState): number {
+export function playerScore(p: Pick<PlayerState, 'dice' | 'captured'>): number {
   let total = 0;
   for (const d of p.dice) total += keptValue(d);
   for (const d of p.captured) total += capturedValue(d);

@@ -19,9 +19,18 @@ import {
   validateAttack,
 } from '../engine';
 import type { Action, AttackType, ButtonDef, Die, GameState, PlayerId, PlayerState, Skill, SwingLetter } from '../engine';
+import { LEVEL_NAMES } from '../ai/levels';
+import type { Level } from '../ai/levels';
+import { requestAiAction } from '../ai/client';
 import { dieView, specChip } from './dieView';
 
 type Screen = 'home' | 'new' | 'pick' | 'game' | 'rules';
+
+/** Who plays a seat: a person, or the computer at some level. */
+type Controller = 'human' | Level;
+const CONTROLLERS: Controller[] = ['human', 'easy', 'medium', 'hard'];
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 interface SetupDraft {
   swing: Partial<Record<SwingLetter, number>>;
@@ -44,6 +53,14 @@ interface UIState {
   pickSet: string;
   drafts: [SetupDraft | null, SetupDraft | null];
   toast: string | null;
+  /** Seats for the next match (edited on the New match screen). */
+  controllers: [Controller, Controller];
+  /** Seats for the match in progress. */
+  gameControllers: [Controller, Controller];
+  /** The computer is working out its move. */
+  thinking: boolean;
+  /** Shown in the action bar while the computer's chosen move is previewed. */
+  aiBanner: string | null;
 }
 
 const SAVE_KEY = 'buttonmen.v1';
@@ -65,6 +82,8 @@ function load(): Partial<UIState> {
 export class App {
   private ui: UIState;
   private toastTimer = 0;
+  /** Increments for each computer move so a stale one can tell it was superseded. */
+  private aiRun = 0;
 
   constructor(private root: HTMLElement) {
     const saved = load();
@@ -83,6 +102,10 @@ export class App {
       pickSet: 'All',
       drafts: [null, null],
       toast: null,
+      controllers: saved.controllers ?? ['human', 'medium'],
+      gameControllers: saved.gameControllers ?? ['human', 'human'],
+      thinking: false,
+      aiBanner: null,
     };
     root.addEventListener('click', (e) => this.onClick(e));
     root.addEventListener('input', (e) => this.onInput(e));
@@ -91,8 +114,8 @@ export class App {
 
   private save() {
     try {
-      const { game, names, picks } = this.ui;
-      localStorage.setItem(SAVE_KEY, JSON.stringify({ game, names, picks }));
+      const { game, names, picks, controllers, gameControllers } = this.ui;
+      localStorage.setItem(SAVE_KEY, JSON.stringify({ game, names, picks, controllers, gameControllers }));
     } catch {
       // Storage unavailable (private mode): the game still works, it just won't persist.
     }
@@ -122,11 +145,79 @@ export class App {
     this.ui.fresh = true;
     if (this.ui.game.phase === 'setup') this.ui.drafts = [null, null];
     this.save();
+    this.update();
+  }
+
+  /** Re-render, then let the computer move if it is its turn. */
+  private update() {
     this.render();
+    this.runComputer();
+  }
+
+  private isComputer(p: PlayerId) {
+    return this.ui.gameControllers[p] !== 'human';
+  }
+
+  /** The computer seat that should act now, if any. */
+  private computerToAct(g: GameState): PlayerId | null {
+    if (g.phase === 'setup') return ([0, 1] as PlayerId[]).find((p) => g.awaitingSetup[p] && this.isComputer(p)) ?? null;
+    if (g.phase === 'play' && this.isComputer(g.turn)) return g.turn;
+    return null;
+  }
+
+  private async runComputer() {
+    const ui = this.ui;
+    const g = ui.game;
+    if (!g || ui.screen !== 'game' || ui.thinking) return;
+    const p = this.computerToAct(g);
+    if (p === null) return;
+    const run = ++this.aiRun;
+    ui.thinking = true;
+    ui.attackers = [];
+    ui.targets = [];
+    this.render();
+    // Anything that replaces the game (a move, a new match) makes this result stale.
+    const stillCurrent = () => ui.game === g && ui.screen === 'game';
+    try {
+      const started = performance.now();
+      const action = await requestAiAction(g, p, ui.gameControllers[p] as Level);
+      // A short pause so the computer's moves don't land instantly.
+      await sleep(Math.max(0, 450 - (performance.now() - started)));
+      if (!stillCurrent()) return;
+      // The board was just redrawn for "thinking", so roll animations have already played.
+      ui.fresh = false;
+      if (action?.type === 'attack') {
+        ui.attackers = [...action.attack.attackers];
+        ui.targets = [...action.attack.targets];
+        ui.aiBanner = `${ATTACK_NAMES[action.attack.type]} attack`;
+        this.render();
+        await sleep(900);
+      } else if (action?.type === 'pass') {
+        ui.aiBanner = 'No attacks, passing';
+        this.render();
+        await sleep(900);
+      }
+      if (!stillCurrent()) return;
+      ui.thinking = false;
+      ui.aiBanner = null;
+      if (action) this.dispatch(action);
+    } catch (err) {
+      this.flash(`Computer error: ${(err as Error).message}`);
+    } finally {
+      if (run === this.aiRun && ui.thinking) {
+        ui.thinking = false;
+        ui.aiBanner = null;
+        this.update();
+      }
+    }
   }
 
   private startMatch(buttons: [ButtonDef, ButtonDef]) {
     this.ui.game = newGame(buttons, this.ui.names);
+    this.ui.gameControllers = [...this.ui.controllers];
+    this.aiRun++;
+    this.ui.thinking = false;
+    this.ui.aiBanner = null;
     this.ui.drafts = [null, null];
     this.ui.attackers = [];
     this.ui.targets = [];
@@ -177,6 +268,16 @@ export class App {
       case 'set':
         ui.pickSet = arg;
         break;
+      case 'controller': {
+        const [i, c] = arg.split(':') as [string, Controller];
+        const p = Number(i) as PlayerId;
+        const defaultName = `Player ${p + 1}`;
+        if (c !== 'human' && ui.names[p] === defaultName) ui.names[p] = 'Computer';
+        if (c === 'human' && ui.names[p] === 'Computer') ui.names[p] = defaultName;
+        ui.controllers[p] = c;
+        this.save();
+        break;
+      }
       case 'pickButton':
         ui.picks[ui.picking] = arg;
         ui.screen = 'new';
@@ -190,6 +291,7 @@ export class App {
       case 'rematch':
         if (g) {
           ui.names = [g.players[0].name, g.players[1].name];
+          ui.controllers = [...ui.gameControllers];
           this.startMatch([g.players[0].button, g.players[1].button]);
         }
         break;
@@ -244,6 +346,8 @@ export class App {
       }
       case 'abandon':
         if (confirm('Abandon this match?')) {
+          this.aiRun++;
+          ui.thinking = false;
           ui.game = null;
           ui.screen = 'home';
           this.save();
@@ -251,12 +355,12 @@ export class App {
         break;
     }
     ui.fresh = false;
-    this.render();
+    this.update();
   }
 
   private toggleDie(id: string) {
     const g = this.ui.game;
-    if (!g || g.phase !== 'play') return;
+    if (!g || g.phase !== 'play' || this.ui.thinking || this.isComputer(g.turn)) return;
     const owner = Number(id.split('-')[0]);
     const list = owner === g.turn ? this.ui.attackers : this.ui.targets;
     const i = list.indexOf(id);
@@ -347,6 +451,12 @@ export class App {
       const b = ui.picks[i] ? findButton(ui.picks[i]!) : undefined;
       return `<div class="card slot p${i}">
         <input class="name-input" data-act="name" data-arg="${i}" value="${esc(ui.names[i])}" aria-label="Player ${i + 1} name" maxlength="20">
+        <div class="seg" role="group" aria-label="Played by">${CONTROLLERS.map(
+          (c) =>
+            `<button class="seg-btn ${ui.controllers[i] === c ? 'on' : ''}" data-act="controller" data-arg="${i}:${c}">${
+              c === 'human' ? 'Human' : LEVEL_NAMES[c]
+            }</button>`,
+        ).join('')}</div>
         ${
           b
             ? `<div class="slot-button"><strong>${esc(b.name)}</strong> <span class="muted">${esc(b.set)}</span></div>
@@ -366,7 +476,11 @@ export class App {
         ${slot(1)}
         <div class="vs">vs</div>
         ${slot(0)}
-        <p class="muted center">Player 1 sits at the bottom of the board. You control both sides.</p>
+        <p class="muted center">${
+          ui.controllers.every((c) => c === 'human')
+            ? 'Player 1 sits at the bottom of the board. You control both sides.'
+            : 'Choose Easy, Medium or Hard to have the computer play that side.'
+        }</p>
       </main>
       <footer class="actionbar"><button class="btn primary wide" data-act="start" ${ready ? '' : 'disabled'}>Start match</button></footer>
     </div>`;
@@ -399,15 +513,24 @@ export class App {
       const pl = g.players[p];
       const letters = swingLetters(pl.specs);
       const opts = optionIndices(pl.specs);
+      const head = `<h3>${esc(pl.name)} <span class="muted">· ${esc(pl.button.name)}</span></h3>`;
       if (!g.awaitingSetup[p]) {
-        const kept = [
+        const sizes = [
           ...letters.map((l) => `${l}=${pl.swing[l]}`),
           ...opts.map((i) => `${pl.specs[i].recipe}→${pl.options[i]}`),
         ];
-        return `<div class="card setup p${p} done">
-          <h3>${esc(pl.name)} <span class="muted">· ${esc(pl.button.name)}</span></h3>
-          <p class="muted">${kept.length ? `Keeps ${kept.join(', ')}` : 'No dice to choose'}${g.round > 1 && kept.length ? ' (won last round)' : ''}. Ready.</p>
-        </div>`;
+        const last = g.results[g.results.length - 1];
+        const choseThisRound = !last || last.winner !== p;
+        let text: string;
+        if (!sizes.length) text = 'No dice to choose. Ready.';
+        else if (!choseThisRound) text = `Keeps ${sizes.join(', ')} (won last round). Ready.`;
+        // Like the real game, a fresh choice stays secret until both players are ready.
+        else if (this.isComputer(p)) text = 'Ready. Its choice is revealed when the round starts.';
+        else text = `Chose ${sizes.join(', ')}. Ready.`;
+        return `<div class="card setup p${p} done">${head}<p class="muted">${text}</p></div>`;
+      }
+      if (this.isComputer(p)) {
+        return `<div class="card setup p${p} done">${head}<p class="muted thinking">Choosing dice</p></div>`;
       }
       const d = this.draft(p);
       const swingRows = letters.map((l) => {
@@ -465,7 +588,7 @@ export class App {
         dieView(d, {
           selected: ui.attackers.includes(d.id) ? 'attacker' : ui.targets.includes(d.id) ? 'target' : undefined,
           rolled: rolled.has(d.id),
-          disabled: g.phase !== 'play',
+          disabled: g.phase !== 'play' || this.isComputer(g.turn),
         }),
       )
       .join('');
@@ -475,7 +598,9 @@ export class App {
           .join('')}</div>`
       : '';
     const info = `<div class="pinfo">
-      <div class="pname"><strong>${esc(pl.name)}</strong> <span class="muted">${esc(pl.button.name)}</span></div>
+      <div class="pname"><strong>${esc(pl.name)}</strong> <span class="muted">${esc(pl.button.name)}</span>${
+        this.isComputer(p) ? ` <span class="tag">CPU ${LEVEL_NAMES[ui.gameControllers[p] as Level]}</span>` : ''
+      }</div>
       <div class="pips" aria-label="${pl.roundsWon} rounds won">${pips}</div>
       <div class="pscore" title="Current score">${fmt(playerScore(pl))}</div>
     </div>`;
@@ -497,6 +622,21 @@ export class App {
   private actionBar(g: GameState) {
     const ui = this.ui;
     if (g.phase !== 'play') return '';
+    if (this.isComputer(g.turn)) {
+      const name = esc(g.players[g.turn].name);
+      const msg = ui.aiBanner
+        ? `<strong>${name}:</strong> ${esc(ui.aiBanner)}${ui.attackers.length ? ` · ${this.selectionSummary(g)}` : ''}`
+        : `<span class="thinking">${name} is thinking</span>`;
+      // Same shape as the human bar so the board doesn't jump between turns.
+      return `<footer class="actionbar">
+        <div class="bar-msg">${msg}</div>
+        <div class="row">
+          <button class="btn small ghost" disabled>Hint</button>
+          <button class="btn small ghost" disabled>Clear</button>
+          <button class="btn small ghost" disabled>Pass</button>
+        </div>
+      </footer>`;
+    }
     const legal = legalAttacks(g);
     if (legal.length === 0) {
       return `<footer class="actionbar">
@@ -639,6 +779,8 @@ export class App {
         <h3>Using this app</h3>
         <p>Tap the dice of the player whose turn it is to select attackers (blue), then tap opposing dice to target (red). Valid attacks appear at the bottom. <em>Hint</em> cycles through every legal attack.</p>
         ${this.ui.game ? '<button class="btn ghost wide" data-act="abandon">Abandon current match</button>' : ''}
+        <h3>Credits</h3>
+        <p class="muted small">Button Men is a game by James Ernest, published by Cheapass Games. This is an unofficial fan project, not affiliated with or endorsed by Cheapass Games. Button recipes are from the ButtonWeavers database, © 2012–2026 The ButtonWeavers Team, used under a BSD license. <a href="./THIRD_PARTY_NOTICES.txt" target="_blank" rel="noopener">Full notices</a>.</p>
       </main>
     </div>`;
   }

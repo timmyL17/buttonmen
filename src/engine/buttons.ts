@@ -3,6 +3,7 @@ import type { ButtonDef } from './types';
 // Recipes from the Buttonweavers button database
 // (github.com/buttonmen-dev/buttonmen, deploy/database/data.button.sql),
 // limited to buttons whose dice use skills this engine supports.
+// Copyright (c) 2012-2026 The ButtonWeavers Team, BSD license: see public/THIRD_PARTY_NOTICES.txt.
 const SETS: Record<string, Record<string, string>> = {
   Soldiers: {
     Avis: '(4) (4) (10) (12) (X)',
